@@ -5,13 +5,13 @@
 | Application Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
+| First match will be mapped, therefore most common matching at the bottom.
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::controller('admin', 'AdminController');
+
+Route::controller('ta', 'TaController');
+
+Route::controller('/','AppController');
+
