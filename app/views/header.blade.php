@@ -29,7 +29,7 @@
 			        {{ Form::password("password", [
 			            "placeholder" => "Password"
 			        ]) }}
-			        {{ Form::submit("Login") }}
+			        {{ Form::submit("Login", array("class"=>"btn btn-success") ) }}
 			    {{ Form::close() }}	
 	        @endif
 			 

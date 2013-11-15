@@ -2,6 +2,7 @@
 
 class TaController extends BaseController {
 
+
 	public function __construct()
     {
     	$this->beforeFilter('auth');
@@ -38,7 +39,9 @@ class TaController extends BaseController {
 		$profile = User::find(Auth::user()->id)->TA()->first();
 
 		return View::make('ta/profile')
-					->with('ta', $profile);
+					->with('ta', $profile)
+					->with('user', $this->user)
+					->with('navbar',$this->navbar);
 	}
 
 	public function getAvailability(){

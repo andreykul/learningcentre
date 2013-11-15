@@ -22,7 +22,7 @@
 		            "class" =>"form-control"
 		        ]) }}
 		    </div>
-	        {{ Form::submit("login") }}
+	        {{ Form::submit("login", array("class"=>"btn btn-block btn-lg btn-success") ) }}
 	    {{ Form::close() }}
 	</div>
 @stop
