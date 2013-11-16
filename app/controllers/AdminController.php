@@ -37,10 +37,7 @@ class AdminController extends BaseController {
 	}
 
 
-	public function getAvailability()
-	{
-
-	}
+	
 
 	public function getShifts()
 	{

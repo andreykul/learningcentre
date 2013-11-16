@@ -10,6 +10,7 @@
 */
 
 Route::controller('admin', 'AdminController');
+Route::controller('admin', 'AdminAvailabilityController');
 
 Route::controller('ta', 'TaController');
 Route::controller('ta', 'TaProfileController');
