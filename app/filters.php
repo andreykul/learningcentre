@@ -13,7 +13,12 @@
 
 App::before(function($request)
 {
-	//
+	$sanitized = Input::all();
+
+	foreach ($sanitized as $key => $value)
+		$sanitized[$key] = trim(strip_tags($value));
+	
+	Input::merge($sanitized);
 });
 
 
