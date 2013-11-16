@@ -65,6 +65,7 @@ class TaController extends BaseController {
 				$picture->move('images', $profile['picture']->getClientOriginalName());
 			else unset($profile['picture']);
 		}
+		else unset($profile['picture']);
 
 		$ta = User::find(Auth::user()->id)->TA()->first();
 

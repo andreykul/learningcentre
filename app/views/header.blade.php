@@ -13,14 +13,14 @@
 		    @endif
 
 			@if (isset($user))
-	            <div class="btn-group navbar-right">
-					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-						{{ $user['username'] }} <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a href="{{ url('logout') }}">Logout</a></li>
-					</ul>
-				</div>
+	            <ul class="nav navbar-nav navbar-right">
+	            	<li class="dropdown">
+	            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $user['username'] }} <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="{{ url('logout') }}">Logout</a></li>
+						</ul>
+	            	</li>
+				</ul>
 			@elseif ( ! isset($loginPage))
 				{{ Form::open(["url" => "login","autocomplete" => "off", "class" => "navbar-form navbar-right"]) }}
 			        {{ Form::text("username", Input::old("username"), [
