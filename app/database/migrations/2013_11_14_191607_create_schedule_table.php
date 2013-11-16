@@ -15,6 +15,7 @@ class CreateScheduleTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('ta_id')->unique();
+			$table->string('day');
 			$table->time('start');
 			$table->time('end');
 			$table->boolean('preffered');
