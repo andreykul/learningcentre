@@ -3,12 +3,18 @@
     <div class="col-md-12">
         <fieldset class="col-md-12">
         	<legend>My Information</legend>
-        	{{ Form::open(array('url' => 'ta/profile', 'role' =>"form")) }}
+        	{{ Form::open(array('url' => 'ta/profile', 'role' =>"form", 'files' => true)) }}
 	        	<div class="col-md-3">
 	        		<div class="form-group">
 						{{ Form::label('picture', 'Image') }} <br>
-						<img src="{{ asset($ta->picture) }}" alt="{{ $ta->name }}" class="img-thumbnail">
+							<img src="{{ asset('images/'.$ta->picture) }}" alt="{{ $ta->name }}" class="img-thumbnail">
 						{{ Form::file('picture', array("class" => "form-control") ) }}
+						@if ( $error = $errors->first("picture") )
+							<div class="alert alert-warning alert-dismissable">
+				            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				                {{ $error }}
+				            </div>
+						@endif
 					</div>
 	        	</div>
 

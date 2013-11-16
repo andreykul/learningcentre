@@ -47,7 +47,8 @@ class AppController extends BaseController {
                     return Redirect::to("admin");
                 else return Redirect::to("ta");
             }
-            else {
+            else 
+            {
 	            $data["username"] = Input::get("username");
 	            $errors['password'] = "Username and/or password invalid.";
 
