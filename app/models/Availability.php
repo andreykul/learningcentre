@@ -1,8 +1,8 @@
 <?php
 
-class Schedule extends Eloquent {
+class Availability extends Eloquent {
 
-    protected $table = 'schedule';
+    protected $table = 'availability';
 
     public function TA(){
     	return $this->belongsTo('ta');

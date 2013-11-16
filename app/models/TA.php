@@ -9,9 +9,9 @@ class TA extends Eloquent {
     	return $this->belongsTo('User');
     }
 
-    public function schedule()
+    public function availability()
     {
-    	return $this->hasMany('schedule');
+    	return $this->hasMany('availability');
     }
     
 }
