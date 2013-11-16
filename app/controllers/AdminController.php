@@ -18,7 +18,7 @@ class AdminController extends BaseController {
 
 			$this->navbar = array(
 				//'Teaching Assistants' => url('admin/teachingAssistants'),
-				'Availability' => url('admin/availability'),
+				'Availability' => array("url" => url('admin/availability'), "active" => false),
 				//'Shifts' => url('admin/shifts')
 			);
     	}

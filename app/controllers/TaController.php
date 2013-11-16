@@ -15,9 +15,9 @@ class TaController extends BaseController {
 			);
 
 			$this->navbar = array(
-				"Profile" => url('ta/profile'),
-				"Availability" => url("ta/availability"),
-				"Shifts" => url("ta/shifts"),
+				"Profile" => array("url" => url('ta/profile'), 'active' => false),
+				"Availability" => array("url" => url("ta/availability"), 'active' => false),
+				"Shifts" => array("url" => url("ta/shifts"), 'active' => false),
 			);
     	}
 	    else 
@@ -37,6 +37,8 @@ class TaController extends BaseController {
 	public function getProfile()
 	{
 		$profile = User::find(Auth::user()->id)->TA()->first();
+
+		$this->navbar['Profile']['active'] = true;
 
 		return View::make('ta/profile')
 					->with('ta', $profile)
