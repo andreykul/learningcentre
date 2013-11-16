@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTaTable extends Migration {
+class CreateSettingsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,16 +11,11 @@ class CreateTaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ta', function($table)
+		Schema::create('settings', function($table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
 			$table->string('name');
-			$table->text('description');
-			$table->string('picture');
-			$table->integer('year');
-			$table->boolean('graduate');
-			$table->integer('hours');
+			$table->string('value');
 			$table->timestamps();
 		});
 	}
@@ -32,7 +27,7 @@ class CreateTaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ta');
+		Schema::drop('settings');
 	}
 
 }
