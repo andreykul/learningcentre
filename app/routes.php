@@ -12,6 +12,8 @@
 Route::controller('admin', 'AdminController');
 
 Route::controller('ta', 'TaController');
+Route::controller('ta', 'TaProfileController');
+Route::controller('ta', 'TaAvailabilityController');
 
 Route::controller('/','AppController');
 
