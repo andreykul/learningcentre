@@ -13,6 +13,7 @@
         <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/jquery-ui-1.10.3.custom.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/underscore-min.js') }}"></script>
         <title>
             Learning Centre Application
         </title>

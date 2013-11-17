@@ -4,7 +4,7 @@ class TaProfileController extends TaController {
 
     public function getProfile()
     {
-        $profile = User::find(Auth::user()->id)->TA()->first();
+        $profile = Auth::user()->TA();
 
         $this->navbar['Profile']['active'] = true;
 

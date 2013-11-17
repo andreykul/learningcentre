@@ -6,12 +6,12 @@ class TA extends Eloquent {
 
     public function user()
     {
-    	return $this->belongsTo('User');
+    	return $this->belongsTo('User','user_id')->first();
     }
 
     public function availability()
     {
-    	return $this->hasMany('availability');
+    	return $this->hasMany('Availability','ta_id')->get();
     }
     
 }

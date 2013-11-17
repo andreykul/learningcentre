@@ -7,7 +7,7 @@ class TaController extends BaseController {
     {
     	$this->beforeFilter('auth');
 
-    	if ( Auth::user()->role == 'ta' )
+    	if ( Auth::check() && Auth::user()->role == 'ta' )
     	{
     		$this->user = array(
 				'username' => Auth::user()->username,
