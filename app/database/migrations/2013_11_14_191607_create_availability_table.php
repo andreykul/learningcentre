@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateScheduleTable extends Migration {
+class CreateAvailabilityTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,10 +11,10 @@ class CreateScheduleTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('schedule', function($table)
+		Schema::create('availability', function($table)
 		{
 			$table->increments('id');
-			$table->integer('ta_id')->unique();
+			$table->integer('ta_id');
 			$table->string('day');
 			$table->time('start');
 			$table->time('end');
@@ -30,7 +30,7 @@ class CreateScheduleTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('schedule');
+		Schema::drop('availability');
 	}
 
 }
