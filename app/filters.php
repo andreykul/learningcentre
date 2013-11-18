@@ -16,7 +16,10 @@ App::before(function($request)
 	$sanitized = Input::all();
 
 	foreach ($sanitized as $key => $value)
-		$sanitized[$key] = trim(strip_tags($value));
+		if (is_array($value))
+			foreach ($value as $sub_key => $sub_value)
+				$sanitized[$key][$sub_key] = trim(strip_tags($sub_value));
+		else $sanitized[$key] = trim(strip_tags($value));
 	
 	Input::merge($sanitized);
 });
