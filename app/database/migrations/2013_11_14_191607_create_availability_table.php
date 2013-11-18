@@ -18,7 +18,7 @@ class CreateAvailabilityTable extends Migration {
 			$table->string('day');
 			$table->time('start');
 			$table->time('end');
-			$table->boolean('preffered');
+			$table->boolean('prefered');
 			$table->timestamps();
 		});
 	}

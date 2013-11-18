@@ -14,7 +14,7 @@ class AvailabilityTableSeeder extends Seeder {
             'day' => 'Monday',
             'start' => "10:00",
             'end' => "12:30",
-            'preffered' => true
+            'prefered' => true
             )
         );
 
@@ -24,7 +24,7 @@ class AvailabilityTableSeeder extends Seeder {
             'day' => 'Monday',
             'start' => "14:30",
             'end' => "18:00",
-            'preffered' => false
+            'prefered' => false
             )
         );
 
@@ -34,7 +34,7 @@ class AvailabilityTableSeeder extends Seeder {
             'day' => 'Tuesday',
             'start' => "10:00",
             'end' => "13:00",
-            'preffered' => true
+            'prefered' => true
             )
         );
     }
