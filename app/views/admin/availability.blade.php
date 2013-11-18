@@ -3,6 +3,14 @@
     <div class="col-md-4">
     	<fieldset>
     		<legend>Availabiltiy Settings</legend>
+			@if (Session::get('success'))
+				<div class="row">
+					<div class="alert alert-info text-center">
+						Changes have been saved!
+					</div>
+				</div>
+			@endif
+
     		{{ Form::open(["url" => "admin/availability", "role" => "form"]) }}
 
 				{{ Form::label("availability_locked","Availability Changes Locked:") }}

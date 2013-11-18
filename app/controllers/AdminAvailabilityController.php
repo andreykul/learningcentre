@@ -32,6 +32,8 @@ class AdminAvailabilityController extends AdminController {
 			$setting->save();
 		}
 		
+		Session::flash('success',true);
+
 		return Redirect::to('admin/availability');
 	}
 

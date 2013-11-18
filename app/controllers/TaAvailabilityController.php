@@ -42,7 +42,7 @@ class TaAvailabilityController extends TaController {
 			$end_time = $this->convertTimeToNumber($end_time);
 
 			for ($i=$start_time; $i < $end_time; $i+=50){
-				$week[$hour->day][$i] = $hour->preffered;
+				$week[$hour->day][$i] = $hour->prefered;
 			}
 
 		}
@@ -54,10 +54,82 @@ class TaAvailabilityController extends TaController {
                     ->with('navbar',$this->navbar)
                     ->with('days', $days)
 					->with('week', $week)
-					->with('time', $time);
+					->with('time', $time)
+					->with('locked', Settings::get('availability_locked')->value);
 	}
 
-	// Private methods
+	public function postAvailability()
+	{
+		$locked = Settings::get('availability_locked');
+
+		//Check if Availability changes allowed
+		if ( $locked->value == false ) 
+		{
+			$hours = Input::all();
+
+			unset($hours['_token']);
+
+			//Sort the times by value
+			foreach ($hours as $day => $times)
+			{
+				ksort($times);
+				$hours[$day] = $times;
+			}
+
+			//New availability
+			$new_availability = array();
+
+			//Loops through all reported days
+			foreach ($hours as $day => $times) {
+				//Loop through all times for each day
+				foreach ($times as $time => $prefered)
+				{
+					//Check if already inside of an interval
+					if (isset($interval))
+					{
+						//Check if still in the same interval by preference and consecutive time
+						if ( $interval['prefered'] == $prefered && $interval['end'] == $time)
+							$interval['end'] = $time+50;
+						//Otherwise new interval
+						else
+						{
+							$new_availability[] = $interval;
+							$interval = array("day" => $day, "start" => $time, "end" => $time+50, "prefered" => $prefered);
+						}
+					}
+					//Create new interval if one doesn't exist
+					else $interval = array("day" => $day, "start" => $time, "end" => $time+50, "prefered" => $prefered);
+				}
+				$new_availability[] = $interval;
+				unset($interval);
+			}
+
+			//Find previous Availability
+			$old_availability = Auth::user()->TA()->availability();
+
+			//Delete all previous Availability
+			foreach ($old_availability as $old)
+				$old->delete();
+
+			//Create new Availability
+			foreach ($new_availability as $new){
+				$new['ta_id'] = Auth::user()->TA()->id;
+				$new['start'] = $this->convertNumberToTime($new['start']);
+				$new['end'] = $this->convertNumberToTime($new['end']);
+				Availability::create($new);
+			}
+
+			Session::flash('success', true);
+
+			//Redirect back to the TA availability page
+			return Redirect::to('ta/availability');
+			
+		}
+	}
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 *                     PRIVATE METHODS                     *
+	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 	private function convertTimeToNumber($time)
 	{
@@ -67,6 +139,16 @@ class TaAvailabilityController extends TaController {
 		$time[1] = str_pad($time[1],2,"0", STR_PAD_LEFT);
 		$time = implode('', $time);
 		return intval($time);
+	}
+
+	private function convertNumberToTime($number)
+	{
+		$hours = intval($number/100);
+		$hours = str_pad($hours,2,"0", STR_PAD_LEFT);
+		$minutes = $number%100/100*60;
+		$minutes = str_pad($minutes,2,"0", STR_PAD_LEFT);
+		$time = implode(':', array($hours,$minutes));
+		return $time;
 	}
 
 }
