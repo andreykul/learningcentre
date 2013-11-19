@@ -5,23 +5,44 @@ Learning Centre App
 Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 
 ##Installation
-###Prerequisites 
-* WAMP, LAMP, MAMP (Apache, MySQL, PHP)
-* PHP in the PATH environment variable ([Windwos](http://www.itechtalk.com/thread3595.html), [Linux/Mac](http://www.cyberciti.biz/faq/unix-linux-adding-path/))
-* openssl module enabled in php.ini (i.e. C:\wamp\bin\php\php5.4.3\php.ini)
-* [Composer](http://getcomposer.org/doc/00-intro.md#downloading-the-composer-executable)
+###Prerequisites
+
+* Install Git
+	* Windows:
+		* [Git](http://git-scm.com/downloads)
+	* Linux (Ubuntu):
+		* `sudo apt-get install git`
+	* Mac:
+		* Installed by default
+* Install WAMP,LAMP or MAMP (Apache, MySQL, PHP 5.4):
+	* Windows:
+		* [WAMP](http://www.wampserver.com/en) (Download WAMP with PHP 5.4)
+	* Linux (Ubuntu):
+		* `sudo apt-get install lamp-server^` (Do not remove the ^)
+	* Mac:
+		* [MAMP](http://www.mamp.info/en/index.html) (Download the free version of MAMP )
+* Make sure you can run PHP in the Command Line 
+	* How to modify the PATH variable: [Windwos](http://www.itechtalk.com/thread3595.html), [Linux/Mac](http://www.cyberciti.biz/faq/unix-linux-adding-path/)
+* Enable the _openssl_ and _Mcrypt_ modules in PHP
+* Enable the *rewrite_module* in Apache
 
 ###Instructions
-* Enter the folder where you store your PHP code (Usually _htdocs_ or _www_).
+* Open Terminal/Command Line/Git Bash
+* Change to the folder where you store your PHP code (Usually _htdocs_ or _www_).
 * run `git clone https://github.com/andreykul/learningcentre.git`.
 * Enter the Folder created.
-* run `php composer.phar install` to install dependencies. (Make sure it was successful)
-* Configure "app/config/database.php" to your local database.
-* run `php artisan migrate` to update your local database
-* run `php artisan db:seed` to populate the database
+* run `php composer.phar install` to install dependencies. 
+* Open _PhpMyAdmin_ create a new database called "learningcentre"
+* Create a file `app/config/database.php` and copy [database.php](https://raw.github.com/laravel/laravel/master/app/config/database.php) into it
+	* Modify the user,password and database in the MySQL section
+* run `php artisan migrate` to update your database
+* run `php artisan db:seed` to populate the tables
 * You should have now have two accounts:
   * Username: "admin" , Password: "password"
   * Username: "ta" , Password: "password"
-* You should be able to access the project at _localhost/learningcentre/public_
+* You should be able to access the project in your browset at:
+	* `http://localhost/learningcentre/public` or
+	* `http://localhost:8888/learningcentre/public` or
+	* `http://localhost:[port]/learningcentre/public`
 
 
