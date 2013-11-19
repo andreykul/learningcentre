@@ -94,6 +94,8 @@
 	        @endif
         </fieldset>
         
-        {{ HTML::script('js/ta-availability.js') }}
+        @if (! $locked)
+        	{{ HTML::script('js/ta-availability.js') }}
+        @endif
     </div>
 @stop
