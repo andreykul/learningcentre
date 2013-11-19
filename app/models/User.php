@@ -12,6 +12,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+
+	public function TA()
+	{
+		return $this->hasOne('TA', 'user_id')->first();
+	}
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *

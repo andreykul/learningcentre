@@ -16,18 +16,12 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 * run `git clone https://github.com/andreykul/learningcentre.git`.
 * Enter the Folder created.
 * run `php composer.phar install` to install dependencies. (Make sure it was successful)
-* Configure "app/config/database.php" to your local database.* 
-* You should be able to access the project at _localhost/learningcentre/public_
-___
-###Temporary
-If you are on issue-4 branch :
-
+* Configure "app/config/database.php" to your local database.
 * run `php artisan migrate` to update your local database
 * run `php artisan db:seed` to populate the database
 * You should have now have two accounts:
   * Username: "admin" , Password: "password"
   * Username: "ta" , Password: "password"
-
-
+* You should be able to access the project at _localhost/learningcentre/public_
 
 
