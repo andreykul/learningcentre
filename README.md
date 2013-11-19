@@ -45,4 +45,21 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 	* `http://localhost:8888/learningcentre/public` or
 	* `http://localhost:[port]/learningcentre/public`
 
+---
 
+##Database
+###Migrations
+* Update tables
+	* run `php artisan migrate`
+* Reset tables
+	* run `php artisan migrate:refresh`
+* Remvoe tables
+	* run `php artisan migrate:reset`
+* Undo last table change
+	* run `php artisan migrate:rollback`
+* Manual reset
+	* Open PhpMyAdmin and remove each table manually
+	* run `php artisan migrate`
+	
+###Populate/Seed
+* run `php artisan db:seed`
