@@ -21,7 +21,7 @@ class AdminTAsController extends AdminController {
 		$email = Input::get('email');
 
 
-		Mail::send('emails.newTa', array(), function($message)
+		Mail::send('emails.newTa', array('email' => $email), function($message)
 		{
 			$email = Input::get('email');
 
