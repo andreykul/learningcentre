@@ -16,36 +16,49 @@ class TaProfileController extends TaController {
 
     public function postProfile()
     {
-        $profile = Input::all();
+        $validator = Validator::make(Input::all(), [
+            "name" => "required",
+        ]);
 
-        if (Input::hasFile('picture'))
+        if ($validator->passes())
         {
-            $picture = Input::file('picture');
+            $profile = Input::all();
 
-            $type = $picture->getMimeType();
+            if (Input::hasFile('picture'))
+            {
+                $picture = Input::file('picture');
 
-            $type = explode('/',$type)[0];
+                $type = $picture->getMimeType();
 
-            if ($type == "image")
-                $picture->move('images', $profile['picture']->getClientOriginalName());
+                $type = explode('/',$type)[0];
+
+                if ($type == "image")
+                    $picture->move('images', $profile['picture']->getClientOriginalName());
+                else unset($profile['picture']);
+            }
             else unset($profile['picture']);
+
+            $ta = User::find(Auth::user()->id)->TA()->first();
+
+            unset($profile['_token']);
+
+            foreach ($profile as $attribute => $value)
+            {
+                if ($attribute == 'picture')
+                    $ta[$attribute] = $value->getClientOriginalName();
+                else $ta[$attribute] = $value;
+            }       
+
+            $ta->save();
+
+            return Redirect::to('ta/profile');
         }
-        else unset($profile['picture']);
-
-        $ta = User::find(Auth::user()->id)->TA()->first();
-
-        unset($profile['_token']);
-
-        foreach ($profile as $attribute => $value)
+        else
         {
-            if ($attribute == 'picture')
-                $ta[$attribute] = $value->getClientOriginalName();
-            else $ta[$attribute] = $value;
-        }       
+            //Display error message since name is required
 
-        $ta->save();
-
-        return Redirect::to('ta/profile');
+            return Redirect::to('ta/profile');   
+        }
     }
 	
 }

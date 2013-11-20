@@ -3,6 +3,14 @@
 	<div class="col-md-4">
 		<fieldset>
 			<legend>New Teaching Assistant</legend>
+			@foreach ($errors->all() as $error)
+				<div class="row">
+					<div class="alert alert-danger text-center">
+						{{ $error }}
+					</div>
+				</div>
+			@endforeach
+
 			{{ Form::open(["url" => "admin/ta", "role" => "form"]) }}
 				<div class="form-group">
 					{{ Form::label('name', 'Name') }}

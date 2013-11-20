@@ -17,22 +17,33 @@ class AdminTAsController extends AdminController {
 
 	public function postTa()
 	{
+		$validator = Validator::make(Input::all(), [
+            "email" => "required|unique:users",
+            "name" => "required"
+        ]);
 
-		$email = Input::get('email');
-		$name = Input::get('name');
+        if ($validator->passes())
+        {
+        	$email = Input::get('email');
+			$name = Input::get('name');
 
-		Mail::send('emails.newTa', array('email' => $email), function($message)
-		{
-			$email = Input::get('email');
+			Mail::send('emails.newTa', array('email' => $email), function($message)
+			{
+				$email = Input::get('email');
 
-			$message->to($email)->subject('Welcome to the Learning Centre!');
-		});
+				$message->to($email)->subject('Welcome to the Learning Centre!');
+			});
 
-		$user = User::create(array('email' => $email));
+			$user = User::create(array('email' => $email));
 
-		TA::create(array('user_id' => $user->id, "name" => $name));
+			TA::create(array('user_id' => $user->id, "name" => $name));
 
-		return Redirect::to('admin/tas');
+			return Redirect::to('admin/tas');
+        }
+        else
+        {
+        	return Redirect::to('admin/tas')->withErrors($validator);
+        }
 
 	}
 
