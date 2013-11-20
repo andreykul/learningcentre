@@ -24,12 +24,20 @@ class AdminTAsController extends AdminController {
 
 	public function postTa()
 	{
+		$email = Input::get('email');
+
 		Mail::send('emails.newTa', array(), function($message)
 		{
 			$email = Input::get('email');
 
 			$message->to($email)->subject('Welcome to the Learning Centre!');
 		});
+
+		$user = User::create(array('email' => $email));
+
+		TA::create(array('user_id' => $user->id));
+
+		return Redirect::to('admin/tas');
 	}
 
 	public function deleteTA($id)
