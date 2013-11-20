@@ -19,7 +19,7 @@ class AdminTAsController extends AdminController {
 	{
 
 		$email = Input::get('email');
-
+		$name = Input::get('name');
 
 		Mail::send('emails.newTa', array('email' => $email), function($message)
 		{
@@ -28,9 +28,9 @@ class AdminTAsController extends AdminController {
 			$message->to($email)->subject('Welcome to the Learning Centre!');
 		});
 
-		$user = User::create(array('email' => $email, 'role' => 'ta'));
+		$user = User::create(array('email' => $email));
 
-		TA::create(array('user_id' => $user->id));
+		TA::create(array('user_id' => $user->id, "name" => $name));
 
 		return Redirect::to('admin/tas');
 
@@ -38,6 +38,9 @@ class AdminTAsController extends AdminController {
 
 	public function deleteTA($id)
 	{
+		$ta = TA::find($id);
+
+		User::destroy($ta->user_id);
 		TA::destroy($id);
 
 		return Redirect::to('admin/tas');
