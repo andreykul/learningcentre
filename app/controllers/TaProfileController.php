@@ -18,6 +18,9 @@ class TaProfileController extends TaController {
     {
         $validator = Validator::make(Input::all(), [
             "name" => "required",
+            "picture" => "image",
+            "hours" => "min:0",
+            "year" => "min:1"
         ]);
 
         if ($validator->passes())

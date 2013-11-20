@@ -17,10 +17,10 @@ class CreateTaTable extends Migration {
 			$table->integer('user_id');
 			$table->string('name');
 			$table->text('description');
-			$table->string('picture');
-			$table->integer('year');
-			$table->boolean('graduate');
-			$table->integer('hours');
+			$table->string('picture')->default('default.jpeg');
+			$table->integer('year')->unsigned()->default(1);
+			$table->boolean('graduate')->default(false);
+			$table->integer('hours')->unsigned()->default(0);
 			$table->timestamps();
 		});
 	}
