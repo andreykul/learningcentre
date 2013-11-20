@@ -23,7 +23,7 @@ class AppController extends BaseController {
 	public function getLogin()
 	{
 		return View::make('login')
-				->with('loginPage',true);
+				->with('noLogin',true);
 	}
 
 	public function postLogin()

@@ -28,7 +28,7 @@
 						</ul>
 	            	</li>
 				</ul>
-			@elseif ( ! isset($loginPage))
+			@elseif ( ! isset($noLogin))
 				{{ Form::open([
 					"url" => "login",
 					"autocomplete" => "off",
