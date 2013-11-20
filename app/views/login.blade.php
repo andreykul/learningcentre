@@ -9,9 +9,9 @@
 	            </div>
 	        @endif
 	    	<div class="form-group">
-		        {{ Form::label("username", "Username") }}
-		        {{ Form::text("username", Input::get("username"), [
-		            "placeholder" => "Username",
+		        {{ Form::label("email", "Email") }}
+		        {{ Form::text("email", Input::get("email"), [
+		            "placeholder" => "Email",
 		            "class" =>"form-control"
 		        ]) }}
 		    </div>

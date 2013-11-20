@@ -10,7 +10,7 @@ class TaController extends BaseController {
     	if ( Auth::check() && Auth::user()->role == 'ta' )
     	{
     		$this->user = array(
-				'username' => Auth::user()->username,
+				'username' => Auth::user()->TA()->name,
 				'id' => Auth::user()->id,
 			);
 

@@ -4,7 +4,7 @@ class TA extends Eloquent {
 
     protected $table = 'ta';
 
-    protected $fillable = array('user_id');
+    protected $fillable = array('user_id','name');
 
     public function user()
     {

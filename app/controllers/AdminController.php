@@ -12,7 +12,7 @@ class AdminController extends BaseController {
     	if ( Auth::check() && Auth::user()->role == "admin")
     	{
     		$this->user = array(
-				'username' => Auth::user()->username,
+				'username' => "Administrator",
 				'id' => Auth::user()->id,
 			);
 

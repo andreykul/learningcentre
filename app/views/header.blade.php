@@ -34,8 +34,8 @@
 					"autocomplete" => "off",
 					"class" => "navbar-form navbar-right"
 				]) }}
-			        {{ Form::text("username", Input::old("username"), [
-			            "placeholder" => "Username"
+			        {{ Form::text("email", Input::old("email"), [
+			            "placeholder" => "Email"
 			        ]) }}
 			        {{ Form::password("password", [
 			            "placeholder" => "Password"

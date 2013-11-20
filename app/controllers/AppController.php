@@ -29,14 +29,14 @@ class AppController extends BaseController {
 	public function postLogin()
     {
         $validator = Validator::make(Input::all(), [
-            "username" => "required",
+            "email" => "required",
             "password" => "required"
         ]);
 
         if ($validator->passes())
         {
             $credentials = [
-                "username" => Input::get("username"),
+                "email" => Input::get("email"),
                 "password" => Input::get("password")
             ];
 
@@ -49,7 +49,7 @@ class AppController extends BaseController {
             }
             else 
             {
-	            $data["username"] = Input::get("username");
+	            $data["email"] = Input::get("email");
 	            $errors['password'] = "Username and/or password invalid.";
 
 	            return Redirect::to("login")
@@ -59,7 +59,7 @@ class AppController extends BaseController {
         }
         else 
         {
-            $data["username"] = Input::get("username");
+            $data["email"] = Input::get("email");
             $errors['password'] = "Username and password are required.";
 
             return Redirect::to("login")
