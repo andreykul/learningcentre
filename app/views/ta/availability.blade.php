@@ -45,16 +45,16 @@
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>
-		        			<th class="col-md-2">Time</th>
+		        			<th class="text-center">Time</th>
 		        			@foreach ($days as $day)
-								<th>{{ $day }}</th>
+								<th class="text-center">{{ $day }}</th>
 		        			@endforeach
 		        		</tr>
 		        	</thead>
 		        	<tbody id="selectable">
 						@for ($i = $time['start']; $i < $time['end']; $i+=50)
 							<tr>
-								<td>
+								<td class="text-center">
 									{{ str_pad(intval($i/100), 2, "0", STR_PAD_LEFT) }}:{{ str_pad($i%100/100*60, 2, "0", STR_PAD_LEFT) }}
 									 - 
 									{{ str_pad(intval(($i+50)/100), 2, "0", STR_PAD_LEFT) }}:{{ str_pad(($i+50)%100/100*60, 2, "0", STR_PAD_LEFT) }}
