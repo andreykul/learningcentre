@@ -33,7 +33,7 @@ class AdminTAsController extends AdminController {
 			$message->to($email)->subject('Welcome to the Learning Centre!');
 		});
 
-		$user = User::create(array('email' => $email));
+		$user = User::create(array('email' => $email, 'role' => 'ta'));
 
 		TA::create(array('user_id' => $user->id));
 
