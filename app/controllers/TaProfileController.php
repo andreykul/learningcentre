@@ -18,9 +18,6 @@ class TaProfileController extends TaController {
     {
         $validator = Validator::make(Input::all(), [
             "name" => "required",
-            "picture" => "image",
-            "hours" => "min:0",
-            "year" => "min:1"
         ]);
 
         if ($validator->passes())
@@ -36,21 +33,20 @@ class TaProfileController extends TaController {
                 $type = explode('/',$type)[0];
 
                 if ($type == "image")
-                    $picture->move('images', $profile['picture']->getClientOriginalName());
+                {
+                    $picture->move('images', $picture->getClientOriginalName());
+                    $profile['picture'] = $picture->getClientOriginalName();
+                }
                 else unset($profile['picture']);
             }
             else unset($profile['picture']);
 
-            $ta = User::find(Auth::user()->id)->TA()->first();
+            $ta = User::find(Auth::user()->id)->TA();
 
             unset($profile['_token']);
 
             foreach ($profile as $attribute => $value)
-            {
-                if ($attribute == 'picture')
-                    $ta[$attribute] = $value->getClientOriginalName();
-                else $ta[$attribute] = $value;
-            }       
+                $ta[$attribute] = $value;
 
             $ta->save();
 
@@ -59,7 +55,6 @@ class TaProfileController extends TaController {
         else
         {
             //Display error message since name is required
-
             return Redirect::to('ta/profile');   
         }
     }
