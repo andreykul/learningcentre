@@ -18,6 +18,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasOne('TA', 'user_id')->first();
 	}
 
+	protected $fillable = array('email');
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
