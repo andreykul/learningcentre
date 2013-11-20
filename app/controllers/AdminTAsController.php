@@ -9,13 +9,6 @@ class AdminTAsController extends AdminController {
 
 		$tas = TA::all();
 
-		// echo "<pre>";
-		// foreach ($tas as $key => $ta) {
-		// 	echo $ta->user()->email;
-		// }
-		// echo "</pre>";
-		// exit();
-
 		return View::make('admin/TAs')
 					->with('tas',$tas)
 					->with('user', $this->user)
@@ -24,7 +17,9 @@ class AdminTAsController extends AdminController {
 
 	public function postTa()
 	{
+
 		$email = Input::get('email');
+
 
 		Mail::send('emails.newTa', array(), function($message)
 		{
@@ -38,6 +33,7 @@ class AdminTAsController extends AdminController {
 		TA::create(array('user_id' => $user->id));
 
 		return Redirect::to('admin/tas');
+
 	}
 
 	public function deleteTA($id)
