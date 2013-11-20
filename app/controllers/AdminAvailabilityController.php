@@ -4,6 +4,7 @@ class AdminAvailabilityController extends AdminController {
 
 	public function getAvailability()
 	{
+		$this->navbar['Availability']['active'] = true;
 
 		$availability = array();
 		$locked = Settings::get("availability_locked");

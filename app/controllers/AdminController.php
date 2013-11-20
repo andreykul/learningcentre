@@ -9,7 +9,7 @@ class AdminController extends BaseController {
     {
     	$this->beforeFilter('auth');
 
-    	if ( Auth::user()->role == "admin")
+    	if ( Auth::check() && Auth::user()->role == "admin")
     	{
     		$this->user = array(
 				'username' => Auth::user()->username,
@@ -17,7 +17,7 @@ class AdminController extends BaseController {
 			);
 
 			$this->navbar = array(
-				//'Teaching Assistants' => url('admin/teachingAssistants'),
+				'TAs' => array("url" => url('admin/tas'), 'active' => false),
 				'Availability' => array("url" => url('admin/availability'), "active" => false),
 				//'Shifts' => url('admin/shifts')
 			);
@@ -34,13 +34,5 @@ class AdminController extends BaseController {
 		return View::make('admin/index')
 					->with('user', $this->user)
 					->with('navbar', $this->navbar);
-	}
-
-
-	
-
-	public function getShifts()
-	{
-
 	}
 }
