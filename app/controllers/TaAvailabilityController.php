@@ -111,13 +111,19 @@ class TaAvailabilityController extends TaController {
 			foreach ($old_availability as $old)
 				$old->delete();
 
+			$ta = Auth::user()->TA();
+
 			//Create new Availability
 			foreach ($new_availability as $new){
-				$new['ta_id'] = Auth::user()->TA()->id;
+				$new['ta_id'] = $ta->id;
 				$new['start'] = $this->convertNumberToTime($new['start']);
 				$new['end'] = $this->convertNumberToTime($new['end']);
 				Availability::create($new);
 			}
+
+			//TA updated availability
+			$ta->availability_updated_at = date('Y-m-d H:i:s');;
+			$ta->save();
 
 			Session::flash('success', true);
 

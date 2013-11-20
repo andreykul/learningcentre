@@ -4,6 +4,8 @@ class TA extends Eloquent {
 
     protected $table = 'ta';
 
+    protected $fillable = array('user_id','name');
+
     public function user()
     {
     	return $this->belongsTo('User','user_id')->first();
