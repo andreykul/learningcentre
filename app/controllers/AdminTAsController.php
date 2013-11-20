@@ -18,7 +18,7 @@ class AdminTAsController extends AdminController {
 	public function postTa()
 	{
 		$validator = Validator::make(Input::all(), [
-            "email" => "required|unique:users",
+            "email" => "required|unique:users|email_address",
             "name" => "required"
         ]);
 

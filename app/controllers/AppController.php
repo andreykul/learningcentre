@@ -22,6 +22,9 @@ class AppController extends BaseController {
 
 	public function getLogin()
 	{
+        if (Auth::check())
+            return Redirect::to("/");
+
 		return View::make('login')
 				->with('noLogin',true);
 	}
@@ -49,22 +52,18 @@ class AppController extends BaseController {
             }
             else 
             {
-	            $data["email"] = Input::get("email");
 	            $errors['password'] = "Username and/or password invalid.";
 
 	            return Redirect::to("login")
-	                ->withInput($data)
+	                ->withInput()
 	                ->withErrors($errors);
             }
         }
         else 
         {
-            $data["email"] = Input::get("email");
-            $errors['password'] = "Username and password are required.";
-
             return Redirect::to("login")
-                ->withInput($data)
-                ->withErrors($errors);
+                ->withInput()
+                ->withErrors($validator);
         }
 
     }
