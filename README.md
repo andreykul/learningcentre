@@ -38,8 +38,8 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 * run `php artisan migrate` to update your database
 * run `php artisan db:seed` to populate the tables
 * You should have now have two accounts:
-  * Username: "admin" , Password: "password"
-  * Username: "ta" , Password: "password"
+  * Email: "admin@cs.dal.ca" , Password: "password"
+  * Email: "ta@cs.dal.ca" , Password: "password"
 * You should be able to access the project in your browset at:
 	* `http://localhost/learningcentre/public` or
 	* `http://localhost:8888/learningcentre/public` or
@@ -57,7 +57,7 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 	* run `php artisan migrate:reset`
 * Undo last table change
 	* run `php artisan migrate:rollback`
-* Manual reset
+* Manual reset (If migrations fail to work)
 	* Open PhpMyAdmin and remove each table manually
 	* run `php artisan migrate`
 	
