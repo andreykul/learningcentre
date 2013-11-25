@@ -21,6 +21,7 @@ class CreateTaTable extends Migration {
 			$table->integer('year')->unsigned()->default(1);
 			$table->boolean('graduate')->default(false);
 			$table->integer('hours')->unsigned()->default(0);
+			$table->dateTime('availability_updated_at')->nullable();
 			$table->timestamps();
 		});
 	}

@@ -3,6 +3,11 @@
 class AdminAvailabilityDownloadController extends AdminController {
 
 	public function postIndex(){
-		echo "Download availability for".Input::get('day');
+		$day = Input::get('day');
+		$availability = Availability::day($day);
+		
+		echo "<pre>";
+		print_r($availability);
+		echo "</pre>";
 	}
 }

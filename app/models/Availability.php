@@ -15,6 +15,6 @@ class Availability extends Eloquent {
     
     public static function day($day)
     {
-    	return TA::where("day","=",$day)->get();
+    	return Availability::where("day","=",$day)->get();
     }
 }

@@ -77,7 +77,13 @@
     				@foreach ($tas as $ta)
     					<tr>
     						<td class="text-center">{{ $ta->name }}</td>
-		    				<td class="text-center">{{ date("F d,Y",strtotime($ta->availability_updated_at)) }}</td>
+		    				<td class="text-center">
+		    				@if ($ta->availability_updated_at)
+		    					{{ date("F dS, Y",strtotime($ta->availability_updated_at)) }}
+		    				@else
+		    					-
+		    				@endif
+		    				</td>
 		    				<td class="text-center">
 		    					Download
 		    				</td>
