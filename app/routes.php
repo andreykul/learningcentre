@@ -9,9 +9,13 @@
 |
 */
 
-Route::controller('admin', 'AdminController');
-Route::controller('admin', 'AdminAvailabilityController');
-Route::controller('admin', 'AdminTAsController');
+Route::controller('admin/availability/download', 'AdminAvailabilityDownloadController');
+Route::controller('admin/availability', 'AdminAvailabilityController');
+
+Route::controller('admin/tas', 'AdminTAsController');
+
+Route::controller('admin', 'AdminHomeController');
+
 
 Route::controller('ta', 'TaController');
 Route::controller('ta', 'TaProfileController');
