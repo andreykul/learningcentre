@@ -14,7 +14,15 @@
     		{{ Form::open(["url" => "admin/availability", "role" => "form"]) }}
 
 				{{ Form::label("availability_locked","Availability Changes Locked:") }}
-				{{ Form::select("availability_locked", array(false =>"Off",true =>"On"), $availability['locked']) }}
+				{{ Form::select("availability_locked", 
+						array(
+							false =>"Off",
+							true =>"On"
+						),
+						$availability['locked'],
+						array("data-width" => "auto")
+					) 
+				}}
 
 				<div>
 					<label for="hours">Hours range:</label>
@@ -39,6 +47,44 @@
     <div class="col md-8">
     	<fieldset>
     		<legend>Teaching Assistants Availability</legend>
+    		<div>
+    			{{ Form::open(["url" => "admin/availability/download", "role" => "form"]) }}
+					{{ Form::label("day","Select:") }}
+					{{ Form::select("day", 
+							array(
+								"Monday" =>"Monday",
+								"Tuesday" => "Tuesday",
+								"Wednesday" => "Wednesday",
+								"Thursday" => "Thursday",
+								"Friday" => "Friday"
+							),
+							null,
+							array("data-width" => "auto")
+						)
+					}}
+					{{ Form::submit("Download", array("class" => "btn btn-primary")) }}
+    			{{ Form::close() }}
+    		</div>
+    		<table class="table table-striped">
+    			<thead>
+    				<tr>
+    					<th class="text-center">Name</th>
+    					<th class="text-center">Last Updated</th>
+    					<th class="text-center">Action</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				@foreach ($tas as $ta)
+    					<tr>
+    						<td class="text-center">{{ $ta->name }}</td>
+		    				<td class="text-center">{{ date("F d,Y",strtotime($ta->availability_updated_at)) }}</td>
+		    				<td class="text-center">
+		    					Download
+		    				</td>
+		    			</tr>
+		    		@endforeach
+    			</tbody>
+    		</table>
     	</fieldset>
     </div>
 @stop
