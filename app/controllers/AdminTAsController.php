@@ -3,7 +3,7 @@
 class AdminTAsController extends AdminController {
 
 
-	public function getTas()
+	public function getIndex()
 	{
 		$this->navbar['TAs']['active'] = true;
 
@@ -15,7 +15,7 @@ class AdminTAsController extends AdminController {
 					->with('navbar', $this->navbar);
 	}
 
-	public function postTa()
+	public function postAdd()
 	{
 		$validator = Validator::make(Input::all(), [
             "email" => "required|unique:users|email",
@@ -47,7 +47,7 @@ class AdminTAsController extends AdminController {
 
 	}
 
-	public function deleteTA($id)
+	public function deleteRemove($id)
 	{
 		$ta = TA::find($id);
 

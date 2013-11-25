@@ -2,7 +2,7 @@
 
 class AdminAvailabilityController extends AdminController {
 
-	public function getAvailability()
+	public function getIndex()
 	{
 		$this->navbar['Availability']['active'] = true;
 
@@ -24,7 +24,7 @@ class AdminAvailabilityController extends AdminController {
 					->with('navbar', $this->navbar);
 	}
 
-	public function postAvailability()
+	public function postIndex()
 	{
 		$settings = Input::all();
 
