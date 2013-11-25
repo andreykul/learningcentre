@@ -35,16 +35,9 @@ class TaAvailabilityController extends TaController {
 		$time['end'] = $end;
 		
 		foreach ($hours as $hour){
-			$start_time = $hour->start;
-			$start_time = $this->convertTimeToNumber($start_time);
-
-			$end_time = $hour->end;
-			$end_time = $this->convertTimeToNumber($end_time);
-
-			for ($i=$start_time; $i < $end_time; $i+=50){
+			for ($i=$hour->start; $i < $hour->end; $i+=50){
 				$week[$hour->day][$i] = $hour->prefered;
 			}
-
 		}
 
 		$this->navbar['Availability']['active'] = true;
@@ -116,13 +109,11 @@ class TaAvailabilityController extends TaController {
 			//Create new Availability
 			foreach ($new_availability as $new){
 				$new['ta_id'] = $ta->id;
-				$new['start'] = $this->convertNumberToTime($new['start']);
-				$new['end'] = $this->convertNumberToTime($new['end']);
 				Availability::create($new);
 			}
 
 			//TA updated availability
-			$ta->availability_updated_at = date('Y-m-d H:i:s');;
+			$ta->availability_updated_at = date('Y-m-d H:i:s');
 			$ta->save();
 
 			Session::flash('success', true);

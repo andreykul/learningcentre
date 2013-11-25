@@ -8,12 +8,16 @@ class AvailabilityTableSeeder extends Seeder {
 
         $ta = User::where('role','=','ta')->first()->TA();
 
+        $ta->availability_updated_at = date('Y-m-d H:i:s');
+
+        $ta->save();
+
         Availability::create(
             array(
             'ta_id' => $ta->id,
             'day' => 'Monday',
-            'start' => "10:00",
-            'end' => "12:30",
+            'start' => 1000,
+            'end' => 1250,
             'prefered' => true
             )
         );
@@ -22,8 +26,8 @@ class AvailabilityTableSeeder extends Seeder {
             array(
             'ta_id' => $ta->id,
             'day' => 'Monday',
-            'start' => "14:30",
-            'end' => "18:00",
+            'start' => 1450,
+            'end' => 1800,
             'prefered' => false
             )
         );
@@ -32,8 +36,8 @@ class AvailabilityTableSeeder extends Seeder {
             array(
             'ta_id' => $ta->id,
             'day' => 'Tuesday',
-            'start' => "10:00",
-            'end' => "13:00",
+            'start' => 1000,
+            'end' => 1300,
             'prefered' => true
             )
         );
