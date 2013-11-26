@@ -15,7 +15,10 @@ class AdminAvailabilityController extends AdminController {
 		$availability['start_time'] = Settings::get("availability_start_hour")->value;
 		$availability['end_time'] = Settings::get("availability_end_hour")->value;
 
+		$tas = TA::all();
+
 		return View::make('admin/availability')
+					->with('tas', $tas)
 					->with('availability', $availability)
 					->with('user', $this->user)
 					->with('navbar', $this->navbar);
