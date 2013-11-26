@@ -51,6 +51,10 @@ class AdminTAsController extends AdminController {
 	{
 		$ta = TA::find($id);
 
+		$availabilities = $ta->availability();
+		foreach ($availabilities as $availability)
+			Availability::destroy($availability->id);
+		
 		User::destroy($ta->user_id);
 		TA::destroy($id);
 
