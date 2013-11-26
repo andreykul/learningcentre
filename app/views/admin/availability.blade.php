@@ -70,7 +70,6 @@
     				<tr>
     					<th class="text-center">Name</th>
     					<th class="text-center">Last Updated</th>
-    					<th class="text-center">Action</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -83,9 +82,6 @@
 		    				@else
 		    					-
 		    				@endif
-		    				</td>
-		    				<td class="text-center">
-		    					Download
 		    				</td>
 		    			</tr>
 		    		@endforeach
