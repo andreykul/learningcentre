@@ -70,16 +70,18 @@
     				<tr>
     					<th class="text-center">Name</th>
     					<th class="text-center">Last Updated</th>
-    					<th class="text-center">Action</th>
     				</tr>
     			</thead>
     			<tbody>
     				@foreach ($tas as $ta)
     					<tr>
     						<td class="text-center">{{ $ta->name }}</td>
-		    				<td class="text-center">{{ date("F d,Y",strtotime($ta->availability_updated_at)) }}</td>
 		    				<td class="text-center">
-		    					Download
+		    				@if ($ta->availability_updated_at)
+		    					{{ date("F dS, Y",strtotime($ta->availability_updated_at)) }}
+		    				@else
+		    					-
+		    				@endif
 		    				</td>
 		    			</tr>
 		    		@endforeach

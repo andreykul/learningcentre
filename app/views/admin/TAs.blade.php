@@ -12,7 +12,7 @@
 					</div>
 				@endforeach
 
-				{{ Form::open(["url" => "admin/ta", "role" => "form"]) }}
+				{{ Form::open(["url" => "admin/tas/add", "role" => "form"]) }}
 					<div class="form-group">
 						{{ Form::label('name', 'Name') }}
 						{{ Form::text('name', null, array("class" => "form-control") ) }}
@@ -43,7 +43,7 @@
 	    						<td class="text-center">{{ $ta->name }}</td>
 			    				<td class="text-center">{{ $ta->user()->email }}</td>
 			    				<td class="text-center">
-			    					{{ Form::open(["url" => "admin/ta/".$ta->id, 'method' => 'delete', "role" => "form"]) }}
+			    					{{ Form::open(["url" => "admin/tas/remove/".$ta->id, 'method' => 'delete', "role" => "form"]) }}
 			    						{{ Form::submit("Delete", array('class' => 'btn btn-block btn-danger')) }}
 			    					{{ Form::close() }}
 			    				</td>

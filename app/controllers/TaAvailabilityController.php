@@ -27,24 +27,17 @@ class TaAvailabilityController extends TaController {
         		);
 
 		$start = Settings::get("availability_start_hour")->value;
-		$start = $this->convertTimeToNumber($start);
+		$start = Time::ToNumber($start);
 		$time['start'] = $start;
 
 		$end = Settings::get("availability_end_hour")->value;
-		$end = $this->convertTimeToNumber($end);
+		$end = Time::ToNumber($end);
 		$time['end'] = $end;
 		
 		foreach ($hours as $hour){
-			$start_time = $hour->start;
-			$start_time = $this->convertTimeToNumber($start_time);
-
-			$end_time = $hour->end;
-			$end_time = $this->convertTimeToNumber($end_time);
-
-			for ($i=$start_time; $i < $end_time; $i+=50){
+			for ($i=$hour->start; $i < $hour->end; $i+=50){
 				$week[$hour->day][$i] = $hour->prefered;
 			}
-
 		}
 
 		$this->navbar['Availability']['active'] = true;
@@ -116,13 +109,11 @@ class TaAvailabilityController extends TaController {
 			//Create new Availability
 			foreach ($new_availability as $new){
 				$new['ta_id'] = $ta->id;
-				$new['start'] = $this->convertNumberToTime($new['start']);
-				$new['end'] = $this->convertNumberToTime($new['end']);
 				Availability::create($new);
 			}
 
 			//TA updated availability
-			$ta->availability_updated_at = date('Y-m-d H:i:s');;
+			$ta->availability_updated_at = date('Y-m-d H:i:s');
 			$ta->save();
 
 			Session::flash('success', true);
@@ -132,29 +123,4 @@ class TaAvailabilityController extends TaController {
 			
 		}
 	}
-
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 *                     PRIVATE METHODS                     *
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-	private function convertTimeToNumber($time)
-	{
-		$time = explode(':', $time);
-		unset($time[2]);
-		$time[1] = $time[1]/60*100;
-		$time[1] = str_pad($time[1],2,"0", STR_PAD_LEFT);
-		$time = implode('', $time);
-		return intval($time);
-	}
-
-	private function convertNumberToTime($number)
-	{
-		$hours = intval($number/100);
-		$hours = str_pad($hours,2,"0", STR_PAD_LEFT);
-		$minutes = $number%100/100*60;
-		$minutes = str_pad($minutes,2,"0", STR_PAD_LEFT);
-		$time = implode(':', array($hours,$minutes));
-		return $time;
-	}
-
 }
