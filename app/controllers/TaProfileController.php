@@ -20,7 +20,7 @@ class TaProfileController extends TaController {
             "name" => "required",
         ]);
 
-        if ($validator->passes())
+        if ($this->user['active'] && $validator->passes())
         {
             $profile = Input::except('_method');
 

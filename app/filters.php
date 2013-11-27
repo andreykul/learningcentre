@@ -30,6 +30,12 @@ App::after(function($request, $response)
 	//
 });
 
+Route::filter('active', function($route, $request, $value)
+{
+	if ($value == 0) return Redirect::to('ta');
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Authentication Filters
