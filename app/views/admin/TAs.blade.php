@@ -33,6 +33,7 @@
 	    			<thead>
 	    				<tr>
 	    					<th class="text-center">Name</th>
+	    					<th class="text-center">Active</th>
 	    					<th class="text-center">Email</th>
 	    					<th class="text-center">Action</th>
 	    				</tr>
@@ -41,6 +42,13 @@
 	    				@foreach ($tas as $ta)
 	    					<tr>
 	    						<td class="text-center">{{ $ta->name }}</td>
+	    						<td class="text-center">
+			    					@if ($ta->active)
+			    						<span class="text-success glyphicon glyphicon-lg glyphicon-ok-sign"></span>
+			    					@else
+			    						<span class="text-danger glyphicon glyphicon-lg glyphicon-minus-sign"></span>
+			    					@endif
+			    				</td>
 			    				<td class="text-center">{{ $ta->user()->email }}</td>
 			    				<td class="text-center">
 			    					{{ Form::open(["url" => "admin/tas/remove/".$ta->id, 'method' => 'delete', "role" => "form"]) }}

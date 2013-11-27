@@ -1,15 +1,23 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-        <fieldset class="col-md-12">
+    	@if ( $user['active'] )
+        <fieldset>
         	<legend>My Information</legend>
-        	{{ Form::open(array('url' => 'ta/profile', 'role' =>"form", 'files' => true)) }}
+        	{{ Form::open(array('url' => 'ta/profile', 'method'=>'put', 'role' =>"form", 'files' => true)) }}
 		        <div class="row">
-		        	<div class="col-md-3">
+		        	<div class="col-md-4">
 		        		<div class="form-group">
 							{{ Form::label('picture', 'Image') }} <br>
-								<img src="{{ asset('images/'.$ta->picture) }}" alt="{{ $ta->name }}" class="img-thumbnail">
-							{{ Form::file('picture', array("class" => "form-control") ) }}
+								<img src="{{ asset('images/'.$ta->picture) }}" width="100%" alt="{{ $ta->name }}" class="img-thumbnail">
+							<div class="input-group">
+								<span class="input-group-btn">
+									<span class="btn btn-success btn-file">
+										Browse… <input type="file" id="picture" class="browse-file" accept="image/*" name="picture">
+									</span>
+								</span>
+								<input type="text" class="form-control file-text" readonly="">
+							</div>
 							@if ( $error = $errors->first("picture") )
 								<div class="alert alert-warning alert-dismissable">
 					            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -47,11 +55,23 @@
 		        	</div>
 		        </div>
 		        
-		        <div class="row">
-		        	{{ Form::submit("Save Changes", array('class'=>'btn btn-primary btn-lg center-block') ) }}
+		        <div class="col-md-4 col-md-offset-4">
+		        	{{ Form::submit("Save Changes", array('class'=>'btn btn-primary btn-lg btn-block') ) }}
+		        	{{ Form::close() }}
 		        </div>
-			{{ Form::close() }}
-
         </fieldset>
+        @endif
+
+        <div class="col-md-4 col-md-offset-4">
+        	@if ($user['active'])
+	        	{{ Form::open(array('url' => 'ta/profile', 'role' => 'form', 'method'=>'delete')) }}
+					{{ Form::submit("Deactivate", array('class'=>'btn btn-danger btn-lg btn-block')) }}
+				{{ Form::close() }}
+			@else
+				{{ Form::open(array('url' => 'ta/profile', 'role' => 'form')) }}
+					{{ Form::submit("Activate", array('class' => 'btn btn-success btn-lg btn-block')) }}
+				{{ Form::close() }}
+			@endif
+        </div>
     </div>
 @stop

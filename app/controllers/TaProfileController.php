@@ -14,15 +14,15 @@ class TaProfileController extends TaController {
                     ->with('navbar',$this->navbar);
     }
 
-    public function postIndex()
+    public function putIndex()
     {
         $validator = Validator::make(Input::all(), [
             "name" => "required",
         ]);
 
-        if ($validator->passes())
+        if ($this->user['active'] && $validator->passes())
         {
-            $profile = Input::all();
+            $profile = Input::except('_method');
 
             if (Input::hasFile('picture'))
             {
@@ -55,8 +55,32 @@ class TaProfileController extends TaController {
         else
         {
             //Display error message since name is required
-            return Redirect::to('ta/profile');   
+            return Redirect::to('ta/profile');
         }
+    }
+
+    public function deleteIndex()
+    {
+        $ta = Auth::user()->TA();
+        $ta->active = 0;
+        $ta->save();
+
+        $availabilities = $ta->availability();
+
+        //Remove TA's availability
+        foreach ($availabilities as $availability)
+            Availability::destroy($availability->id);
+
+        return Redirect::to('ta/profile');
+    }
+
+    public function postIndex()
+    {
+        $ta = Auth::user()->TA();
+        $ta->active = 1;
+        $ta->save();
+        
+        return Redirect::to('ta/profile');
     }
 	
 }

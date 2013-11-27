@@ -1,6 +1,6 @@
 <?php
 
-class TaSetupController extends TaController {
+class TaSetupController extends BaseController {
 
 	public function getIndex()
 	{

@@ -2,6 +2,12 @@
 
 class TaAvailabilityController extends TaController {
 
+	public function __construct()
+	{
+		parent::__construct();
+		$this->beforeFilter('active:'.$this->user['active']);
+	}
+
 	public function getIndex(){
 		$ta = Auth::user()->TA();
 		$hours = $ta->availability();
