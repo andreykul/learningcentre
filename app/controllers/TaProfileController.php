@@ -2,7 +2,7 @@
 
 class TaProfileController extends TaController {
 
-    public function getProfile()
+    public function getIndex()
     {
         $profile = Auth::user()->TA();
 
@@ -14,7 +14,7 @@ class TaProfileController extends TaController {
                     ->with('navbar',$this->navbar);
     }
 
-    public function postProfile()
+    public function postIndex()
     {
         $validator = Validator::make(Input::all(), [
             "name" => "required",

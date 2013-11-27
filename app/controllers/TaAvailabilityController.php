@@ -2,7 +2,7 @@
 
 class TaAvailabilityController extends TaController {
 
-	public function getAvailability(){
+	public function getIndex(){
 		$ta = Auth::user()->TA();
 		$hours = $ta->availability();
 
@@ -51,7 +51,7 @@ class TaAvailabilityController extends TaController {
 					->with('locked', Settings::get('availability_locked')->value);
 	}
 
-	public function postAvailability()
+	public function postIndex()
 	{
 		$locked = Settings::get('availability_locked');
 
