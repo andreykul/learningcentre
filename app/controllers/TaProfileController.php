@@ -14,7 +14,7 @@ class TaProfileController extends TaController {
                     ->with('navbar',$this->navbar);
     }
 
-    public function postIndex()
+    public function putIndex()
     {
         $validator = Validator::make(Input::all(), [
             "name" => "required",
@@ -22,7 +22,7 @@ class TaProfileController extends TaController {
 
         if ($validator->passes())
         {
-            $profile = Input::all();
+            $profile = Input::except('_method');
 
             if (Input::hasFile('picture'))
             {
@@ -57,6 +57,11 @@ class TaProfileController extends TaController {
             //Display error message since name is required
             return Redirect::to('ta/profile');   
         }
+    }
+
+    public function deleteIndex()
+    {
+        echo "I want to deactivate my account!";
     }
 	
 }

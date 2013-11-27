@@ -5,8 +5,7 @@ class TaController extends BaseController {
 
 	public function __construct()
     {
-    	if (! Request::is('ta/setup'))
-    		$this->beforeFilter('auth');
+    	$this->beforeFilter('auth');
 
     	if ( Auth::check() && Auth::user()->role == 'ta' )
     	{
