@@ -2,7 +2,7 @@
 
 class TaSetupController extends TaController {
 
-	public function getSetup()
+	public function getIndex()
 	{
 		$email = Input::get('email');
 
@@ -20,7 +20,7 @@ class TaSetupController extends TaController {
 		else return Redirect::guest('/');
 	}
 
-	public function postSetup()
+	public function postIndex()
 	{
 		$email = Input::get('email');
 
