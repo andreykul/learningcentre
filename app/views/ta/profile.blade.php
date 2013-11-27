@@ -1,7 +1,8 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-        <fieldset class="col-md-12">
+    	@if ( $user['active'] )
+        <fieldset>
         	<legend>My Information</legend>
         	{{ Form::open(array('url' => 'ta/profile', 'method'=>'put', 'role' =>"form", 'files' => true)) }}
 		        <div class="row">
@@ -12,7 +13,7 @@
 							<div class="input-group">
 								<span class="input-group-btn">
 									<span class="btn btn-success btn-file">
-										Browse… <input type="file" id="picture" class="browse-file" name="picture">
+										Browse… <input type="file" id="picture" class="browse-file" accept="image/*" name="picture">
 									</span>
 								</span>
 								<input type="text" class="form-control file-text" readonly="">
@@ -57,11 +58,20 @@
 		        <div class="col-md-4 col-md-offset-4">
 		        	{{ Form::submit("Save Changes", array('class'=>'btn btn-primary btn-lg btn-block') ) }}
 		        	{{ Form::close() }}
-
-					{{ Form::open(array('url' => 'ta/profile', 'role' => 'form', 'method'=>'delete', 'class'=>'inline')) }}
-						{{ Form::submit("Deactivate", array('class'=>'btn btn-danger btn-lg btn-block') ) }}
-					{{ Form::close() }}
 		        </div>
         </fieldset>
+        @endif
+
+        <div class="col-md-4 col-md-offset-4">
+        	@if ($user['active'])
+	        	{{ Form::open(array('url' => 'ta/profile', 'role' => 'form', 'method'=>'delete')) }}
+					{{ Form::submit("Deactivate", array('class'=>'btn btn-danger btn-lg btn-block')) }}
+				{{ Form::close() }}
+			@else
+				{{ Form::open(array('url' => 'ta/profile', 'role' => 'form')) }}
+					{{ Form::submit("Activate", array('class' => 'btn btn-success btn-lg btn-block')) }}
+				{{ Form::close() }}
+			@endif
+        </div>
     </div>
 @stop

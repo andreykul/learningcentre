@@ -15,5 +15,9 @@ class TA extends Eloquent {
     {
     	return $this->hasMany('Availability','ta_id')->get();
     }
-    
+ 
+    public static function active()
+    {
+        return TA::where("active",'=',1)->get();
+    }   
 }

@@ -44,7 +44,7 @@
 			{{ Form::close() }}
     	</fieldset>
     </div>
-    <div class="col md-8">
+    <div class="col-md-8">
     	<fieldset>
     		<legend>Teaching Assistants Availability</legend>
     		<div>
@@ -65,11 +65,13 @@
 					{{ Form::submit("Download", array("class" => "btn btn-primary")) }}
     			{{ Form::close() }}
     		</div>
+    		<br>
     		<table class="table table-striped">
     			<thead>
     				<tr>
     					<th class="text-center">Name</th>
     					<th class="text-center">Last Updated</th>
+    					<th class="text-center">Action</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -82,6 +84,11 @@
 		    				@else
 		    					-
 		    				@endif
+		    				</td>
+		    				<td class="text-center">
+		    					{{ Form::open(["url" => "admin/availability/remind", "role" => "form"]) }}
+		    						{{ Form::submit("Remind", array("class" => "btn btn-warning btn-block","disabled"=>"disabled")) }}
+    							{{ Form::close() }}
 		    				</td>
 		    			</tr>
 		    		@endforeach

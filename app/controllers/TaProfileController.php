@@ -55,13 +55,32 @@ class TaProfileController extends TaController {
         else
         {
             //Display error message since name is required
-            return Redirect::to('ta/profile');   
+            return Redirect::to('ta/profile');
         }
     }
 
     public function deleteIndex()
     {
-        echo "I want to deactivate my account!";
+        $ta = Auth::user()->TA();
+        $ta->active = 0;
+        $ta->save();
+
+        $availabilities = $ta->availability();
+
+        //Remove TA's availability
+        foreach ($availabilities as $availability)
+            Availability::destroy($availability->id);
+
+        return Redirect::to('ta/profile');
+    }
+
+    public function postIndex()
+    {
+        $ta = Auth::user()->TA();
+        $ta->active = 1;
+        $ta->save();
+        
+        return Redirect::to('ta/profile');
     }
 	
 }
