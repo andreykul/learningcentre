@@ -62,7 +62,10 @@
 							array("data-width" => "auto")
 						)
 					}}
-					{{ Form::submit("Download", array("class" => "btn btn-primary")) }}
+					{{ Form::button("<span class='glyphicon glyphicon-download'></span> Download",
+							array("class" => "btn btn-primary","type" => "submit")
+						)
+					}}
     			{{ Form::close() }}
     		</div>
     		<br>
@@ -82,12 +85,14 @@
 		    				@if ($ta->availability_updated_at)
 		    					{{ date("F dS, Y",strtotime($ta->availability_updated_at)) }}
 		    				@else
-		    					-
+		    					<span class='text-danger glyphicon glyphicon-lg glyphicon-minus-sign'></span>
 		    				@endif
 		    				</td>
 		    				<td class="text-center">
 		    					{{ Form::open(["url" => "admin/availability/remind", "role" => "form"]) }}
-		    						{{ Form::submit("Remind", array("class" => "btn btn-warning btn-block","disabled"=>"disabled")) }}
+		    						{{ Form::button("<span class='glyphicon glyphicon-envelope'></span> Remind",
+		    							array("class" => "btn btn-warning btn-block","disabled"=>"disabled","type"=>"submit")) 
+		    						}}
     							{{ Form::close() }}
 		    				</td>
 		    			</tr>
