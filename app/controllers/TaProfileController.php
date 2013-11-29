@@ -63,6 +63,7 @@ class TaProfileController extends TaController {
     {
         $ta = Auth::user()->TA();
         $ta->active = 0;
+        $ta->availability_updated_at = null;
         $ta->save();
 
         $availabilities = $ta->availability();
