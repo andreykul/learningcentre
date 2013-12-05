@@ -64,11 +64,15 @@ class TaShiftsController extends TaController {
 		$shifts = Shift::free($week_start, $week_end);
 		foreach ($shifts as $shift){
 			$day = date("l",strtotime($shift->date));
-			$week[$day][$shift->start]['id'] = $shift->id;
-			$week[$day][$shift->start]['mine'] = false;
-			$week[$day][$shift->start]['length'] = ($shift->end - $shift->start) / 50;
-			for ($i=$shift->start+50; $i < $shift->end; $i+=50)
-				$week[$day][$i]['skip'] = 1;
+			for ($i=$shift->start; $i < $shift->end; $i+=50){
+				if ( ! isset($week[$day][$i]) ){
+					$week[$day][$i]['id'] = $shift->id;
+					$week[$day][$i]['mine'] = false;
+					$week[$day][$i]['length'] = ($shift->end - $i) / 50;
+					for ($i=$i+50; $i < $shift->end; $i+=50)
+						$week[$day][$i]['skip'] = 1;
+				}
+			}
 		}
 
         $this->navbar['Shifts']['active'] = true;
