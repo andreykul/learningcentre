@@ -2,11 +2,19 @@
 @section("content")
     <div class="col-md-12">
         <fieldset>
-        	<legend class="row">Shifts ({{ date("M jS, Y",strtotime($week_start)) }} - {{ date("M jS, Y",strtotime($week_start)+ 6 * 24 * 60 * 60) }})</legend>
+        	<legend class="row">Shifts ({{ date("M jS, Y",strtotime($week_start)) }}
+        		 - 
+        		 {{ date("M jS, Y",strtotime($week_start)+ 6 * 24 * 60 * 60) }})</legend>
 
 			<div class="row">
-				<a href="?week_start={{ date('Y-m-d',strtotime($week_start) - 7 * 24 * 60 * 60) }}" class="pull-left btn"><span class="glyphicon glyphicon-circle-arrow-left"></span> Previous Week</a>
-				<a href="?week_start={{ date('Y-m-d',strtotime($week_start) + 7 * 24 * 60 * 60) }}" class="pull-right btn">Next Week <span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+				<a 	href="?week_start={{ date('Y-m-d',strtotime($week_start) - 7 * 24 * 60 * 60) }}" 
+					class="pull-left btn">
+						<span class="glyphicon glyphicon-circle-arrow-left"></span> Previous Week
+				</a>
+				<a 	href="?week_start={{ date('Y-m-d',strtotime($week_start) + 7 * 24 * 60 * 60) }}" 
+					class="pull-right btn">
+					Next Week <span class="glyphicon glyphicon-circle-arrow-right"></span>
+				</a>
 			</div>
 
 			<div class="row">
