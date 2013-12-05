@@ -53,10 +53,22 @@ class TaShiftsController extends TaController {
 		$time['end'] = $end;
 
 		foreach ($shifts as $shift){
-			for ($i=$shift->start; $i < $shift->end; $i+=50){
-				$day = date("l",strtotime($shift->date));
-				$week[$day][$i] = 1;
-			}
+			$day = date("l",strtotime($shift->date));
+			$week[$day][$shift->start]['id'] = $shift->id;
+			$week[$day][$shift->start]['mine'] = true;
+			$week[$day][$shift->start]['length'] = ($shift->end - $shift->start) / 50;
+			for ($i=$shift->start+50; $i < $shift->end; $i+=50)
+				$week[$day][$i]['skip'] = 1;
+		}
+
+		$shifts = Shift::free($week_start, $week_end);
+		foreach ($shifts as $shift){
+			$day = date("l",strtotime($shift->date));
+			$week[$day][$shift->start]['id'] = $shift->id;
+			$week[$day][$shift->start]['mine'] = false;
+			$week[$day][$shift->start]['length'] = ($shift->end - $shift->start) / 50;
+			for ($i=$shift->start+50; $i < $shift->end; $i+=50)
+				$week[$day][$i]['skip'] = 1;
 		}
 
         $this->navbar['Shifts']['active'] = true;
@@ -69,4 +81,16 @@ class TaShiftsController extends TaController {
 					->with('time', $time)
 					->with('week_start', $week_start);
 	}
+
+	public function deleteIndex()
+	{
+		$shift = Shift::find(Input::get('shift_id'));
+
+		$shift->ta_id = null;
+
+		$shift->save();
+
+		return Redirect::to('ta/shifts');
+	}
+
 }

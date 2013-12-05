@@ -41,13 +41,24 @@
 								</td>
 
 			        			@foreach ($days as $day)
-									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
-										@if ( isset($week[$day][$i]) )
-											@if ($week[$day][$i])
-												class="success"
+			        				@if ( ! isset($week[$day][$i]['skip']) )
+										<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
+											@if ( isset($week[$day][$i]) )
+												@if ( $week[$day][$i]['mine'] )
+													class="text-center success shift-own"
+												@else
+													class="text-center warning shift-free"
+												@endif
+												rowspan="{{ $week[$day][$i]['length'] }}"
+											@endif>
+											@if ( isset($week[$day][$i]) )
+											<p hidden=hidden>Drop</p>
+											{{ Form::open(array('url'=>'ta/shifts', 'role'=>"form", 'method'=>'delete')) }}
+												{{ Form::hidden('shift_id',$week[$day][$i]['id']) }}
+											{{ Form::close() }}
 											@endif
-										@endif
-									></td>
+										</td>
+									@endif
 								@endforeach
 
 							</tr>	
@@ -57,5 +68,7 @@
 		        </table>
 	        </div>
         </fieldset>
+
+        {{ HTML::script('js/ta-shifts.js') }}
     </div>
 @stop

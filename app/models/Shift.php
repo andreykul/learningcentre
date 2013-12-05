@@ -13,4 +13,13 @@ class Shift extends Eloquent {
     	return $this->belongsTo('TA','ta_id')->first();
     }
 
+    public static function free($week_start, $week_end = null)
+    {
+        if ($week_end == null)
+            return Shift::where('ta_id','=',null)
+        		->where("date",">",$week_start)->get();
+        else return Shift::where('ta_id','=',null)
+                ->whereBetween('date', array($week_start, $week_end))->get();
+    }
+
 }
