@@ -8,11 +8,11 @@
 
 			<div class="row">
 				<a 	href="?week_start={{ date('Y-m-d',strtotime($week_start) - 7 * 24 * 60 * 60) }}" 
-					class="pull-left btn">
+					class="pull-left btn btn-lg">
 						<span class="glyphicon glyphicon-circle-arrow-left"></span> Previous Week
 				</a>
 				<a 	href="?week_start={{ date('Y-m-d',strtotime($week_start) + 7 * 24 * 60 * 60) }}" 
-					class="pull-right btn">
+					class="pull-right btn btn-lg">
 					Next Week <span class="glyphicon glyphicon-circle-arrow-right"></span>
 				</a>
 			</div>
