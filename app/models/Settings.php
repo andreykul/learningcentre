@@ -4,6 +4,8 @@ class Settings extends Eloquent {
 
     protected $table = 'settings';
 
+    protected $fillable = array('name', 'value');
+
     //protected $hidden = array("id","created_at","updated_at");
     
     public static function get($setting)
