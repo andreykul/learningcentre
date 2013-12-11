@@ -32,6 +32,14 @@ $(function(){
 		$(this).children('form').submit();
 	});
 
+	$('#take-shift').click(function(){
+		times = $('#full-shift').text().split(' - ');
+		start = convertTimeToNumber(times[0]);
+		end = convertTimeToNumber(times[1]);
+		updateTimes(start,end);
+		$('#shift-bid-form').submit();
+	});
+
 	$('.shift-free, .shift-bid').click(function(){
 		shift_id = $(this).children('input').val();
 		$('.modal input[name=shift_id]').val(shift_id);

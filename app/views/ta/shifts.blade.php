@@ -1,10 +1,8 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-		{{ date_default_timezone_set("America/Halifax") }}
-		{{ date("r") }}
 		<div class="modal fade" aria-hidden="true">
-			{{ Form::open(array('url'=>'ta/shifts/', 'role'=>"form", 'method'=>'put')) }}
+			{{ Form::open(array('url'=>'ta/shifts/', 'role'=>"form", 'method'=>'put','id'=>'shift-bid-form')) }}
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -20,7 +18,7 @@
 								<div>
 									<label>Full Shift Time: </label>
 									<span id="full-shift"></span>
-									<button type="submit" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-sm glyphicon-plus"></span> Take</button>	
+									<button type="button" id="take-shift" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-sm glyphicon-plus"></span> Take</button>	
 								</div>
 								{{ Form::label('time', 'Time Bid:') }}
 								<span id="times"></span>
