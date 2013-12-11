@@ -16,15 +16,20 @@ class TA extends Eloquent {
     	return $this->hasMany('Availability','ta_id')->get();
     }
 
-    public function shifts($week_start, $week_end = null)
+    public function bids()
     {
-        if ($week_end == null)
+        return $this->hasMany('ShiftBid','ta_id')->get();
+    }    
+
+    public function shifts($start, $end = null)
+    {
+        if ($end == null)
             return $this->hasMany('Shift','ta_id')
-                    ->where("date",">",$week_start)->get();
+                    ->where("date",">",$start)->get();
         else
         {
             return $this->hasMany('Shift','ta_id')
-                ->whereBetween('date', array($week_start, $week_end))->get();
+                ->whereBetween('date', array($start, $end))->get();
         }
     }
  
