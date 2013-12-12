@@ -15,9 +15,26 @@ class TA extends Eloquent {
     {
     	return $this->hasMany('Availability','ta_id')->get();
     }
+
+    public function bids()
+    {
+        return $this->hasMany('ShiftBid','ta_id')->get();
+    }    
+
+    public function shifts($start, $end = null)
+    {
+        if ($end == null)
+            return $this->hasMany('Shift','ta_id')
+                    ->where("date",">",$start)->get();
+        else
+        {
+            return $this->hasMany('Shift','ta_id')
+                ->whereBetween('date', array($start, $end))->get();
+        }
+    }
  
     public static function active()
     {
         return TA::where("active",'=',1)->get();
     }   
-}
+}   

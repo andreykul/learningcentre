@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('TaTableSeeder');
         $this->call('SettingsTableSeeder');
         $this->call('AvailabilityTableSeeder');
-        
+        $this->call('ShiftsTableSeeder');
 	}
 
 }

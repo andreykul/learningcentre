@@ -35,7 +35,7 @@
 
 				<div id="slider-range"></div>	
 			
-
+				{{ HTML::script('js/time-conversion.js') }}
 				{{ HTML::script('js/availability-settings.js') }}
 
 				<br>

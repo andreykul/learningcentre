@@ -5,7 +5,8 @@ class TaAvailabilityController extends TaController {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->beforeFilter('active:'.$this->user['active']);
+		if (isset($this->user))
+			$this->beforeFilter('active:'.$this->user['active']);
 	}
 
 	public function getIndex(){
