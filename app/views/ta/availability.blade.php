@@ -12,7 +12,7 @@
 			@else
 				@if (Session::get('success'))
 					<div class="row">
-						<div class="alert alert-info text-center">
+						<div class="alert alert-success text-center">
 							Changes have been saved!
 						</div>
 					</div>

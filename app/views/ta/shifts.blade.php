@@ -1,6 +1,20 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
+    	@if (Session::get('success'))
+			<div class="row">
+				<div class="alert alert-success text-center">
+					{{ Session::get('success') }}
+				</div>
+			</div>
+		@elseif (Session::get('fail'))
+			<div class="row">
+				<div class="alert alert-danger text-center">
+					{{ Session::get('fail') }}
+				</div>
+			</div>
+		@endif
+
 		<div class="modal fade" aria-hidden="true">
 			{{ Form::open(array('url'=>'ta/shifts/', 'role'=>"form", 'method'=>'put','id'=>'shift-bid-form')) }}
 			<div class="modal-dialog">
