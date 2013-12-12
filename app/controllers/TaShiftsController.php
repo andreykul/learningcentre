@@ -127,6 +127,12 @@ class TaShiftsController extends TaController {
 			$shift->save();
 
 			Session::flash('success', "Shift has been dropped.");
+
+			/* * * * * * * * * * * * * * * * * * * * * * * * *
+			 *												 *
+			 *			Logic to let other TAs know			 *
+			 *												 *
+			 * * * * * * * * * * * * * * * * * * * * * * * * */
 		}
 		//error message, Shift does not belong to the TA
 		else Session::flash('fail', "Shift does not belong to you.");
