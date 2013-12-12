@@ -125,8 +125,11 @@ class TaShiftsController extends TaController {
 		{
 			$shift->ta_id = null;
 			$shift->save();
+
+			Session::flash('success', "Shift has been dropped.");
 		}
-		//Need to add error message
+		//error message, Shift does not belong to the TA
+		else Session::flash('fail', "Shift does not belong to you.");
 
 		return Redirect::to('ta/shifts');
 	}
@@ -154,7 +157,10 @@ class TaShiftsController extends TaController {
 
 				//Remove all bids for the shift
 				$this->clearBids($shift->id);
+
+				Session::flash('success', "Shift has been added to your schedule.");
 			}
+			else Session::flash('fail', "Bid overlaps with existing shift.");
 		}
 		//Can't cover the entire shift, updating exsisting bid
 		else if ( $my_bid = ShiftBid::shift($bid['shift_id'],$bid['ta_id']) )
@@ -210,10 +216,13 @@ class TaShiftsController extends TaController {
 
 						//Remove the old shift
 						Shift::destroy($shift->id);
+
+						Session::flash('success', "Shift has been added to your schedule.");
 					}
+					else Session::flash('success', "Bid has been changed.");
 				}
 			}
-			//Error message needed
+			else Session::flash('fail', "Bid overlaps with existing shift.");
 		}
 		//Can't cover the entire shift, new bid
 		else
@@ -222,9 +231,13 @@ class TaShiftsController extends TaController {
 			if ($bid['start'] != $bid['end'])
 			{
 				$overlap = $this->checkOverlap($bid);
-				if (! $overlap )
+				if (! $overlap ){
 					ShiftBid::create($bid);
+					Session::flash('success', "Bid has been added.");
+				}
+				else Session::flash('fail', "Bid overlaps with existing shift.");
 			}
+			else Session::flash('fail', "No empty bids allowed.");
 		}
 
 		return Redirect::to('ta/shifts');
