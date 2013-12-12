@@ -52,7 +52,8 @@
 					{{ Form::label("day","Select:") }}
 					{{ Form::select("day", 
 							array(
-								"Monday" =>"Monday",
+								"All" => "All",
+								"Monday" => "Monday",
 								"Tuesday" => "Tuesday",
 								"Wednesday" => "Wednesday",
 								"Thursday" => "Thursday",
