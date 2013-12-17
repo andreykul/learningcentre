@@ -32,11 +32,26 @@ class AdminScheduleController extends AdminController {
 		$end = Time::ToNumber($end);
 		$time['end'] = $end;
 
+		$availabilities = Availability::all();
+		$max_available = 1;
+
+		foreach ($availabilities as $availability){
+			for ($i=$availability->start; $i < $availability->end; $i+=50){
+				if (isset($week[$availability->day][$i])){
+					$week[$availability->day][$i] ++;
+					if ( $max_available < $week[$availability->day][$i] )
+						$max_available = $week[$availability->day][$i];
+				}
+				else $week[$availability->day][$i] = 1;
+			}
+		}
+
 		$this->navbar['Schedule']['active'] = true;
 
 		return View::make('admin/schedule')
 					->with('user', $this->user)
 					->with('navbar', $this->navbar)
+					->with('max',$max_available)
 					->with('days', $days)
 					->with('week', $week)
 					->with('time', $time);
