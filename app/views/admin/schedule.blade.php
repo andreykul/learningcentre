@@ -1,7 +1,7 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-    	<fieldset id="schedule">
+
         	<legend class="row">Schedule</legend>
 			<div class="row">
 	        	<table class="table table-striped table-bordered table-condensed">
