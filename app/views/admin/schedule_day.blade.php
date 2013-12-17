@@ -2,18 +2,18 @@
 @section("content")
     <div class="col-md-12">
     	<fieldset id="schedule">
-        	<legend class="row">Schedule</legend>
+        	<legend class="row"><a class="btn btn-lg btn-link" href="{{ url('admin/schedule') }}"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> {{ $day }}'s Schedule</legend>
 			<div class="row">
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>
 		        			<th class="text-center">Time</th>
-		        			@foreach ($days as $day)
-								<th class="text-center">{{ $day }}</th>
+		        			@foreach ($tas as $ta)
+								<th class="text-center">{{ $ta->name }}</th>
 		        			@endforeach
 		        		</tr>
 		        	</thead>
-		        	<tbody>
+		        	<tbody id="selectable">
 						@for ($i = $time['start']; $i < $time['end']; $i+=50)
 							<tr>
 								<td class="text-center">
@@ -22,18 +22,17 @@
 									{{ str_pad(intval(($i+50)/100), 2, "0", STR_PAD_LEFT) }}:{{ str_pad(($i+50)%100/100*60, 2, "0", STR_PAD_LEFT) }}
 								</td>
 
-			        			@foreach ($days as $day)
-									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
-									@if (isset($week[$day][$i]))
-										@if (($week[$day][$i] / $max) > (2 / 3))
-											class="success"
-										@elseif (($week[$day][$i] / $max) > (1 / 3))
-											class="warning"
-										@else
-											class="danger"
+			        			@foreach ($tas as $ta)
+									<td id="{{ $ta->id }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
+										@if ( isset($available[$ta->id][$i]) )
+											@if ($available[$ta->id][$i] == 1)
+												class="success"
+											@else
+												class="warning"
+											@endif
 										@endif
-									@endif
-									></td>
+									>
+									</td>
 								@endforeach
 
 							</tr>	
@@ -42,11 +41,6 @@
 		        </table>
 	        </div>
 		</fieldset>
-		<script>
-			$('td').click(function(){
-				day = $(this).attr('id').split('-')[0];
-				window.location.href = 'schedule/day/'+day;
-			});
-		</script>
+		{{ HTML::script('js/admin-schedule.js') }}
     </div>
 @stop
