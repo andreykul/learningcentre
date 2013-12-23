@@ -5,6 +5,7 @@ $(function(){
 	$( "#selectable" ).selectable({
 		filter: "td",
 		selected: function(event, ui){
+			id = ui.selected.id.split('-')[0];
 			if ( $(ui.selected).hasClass('info') ){
 				$(ui.selected).toggleClass('info');
 				$(ui.selected).children('input').val(0);
