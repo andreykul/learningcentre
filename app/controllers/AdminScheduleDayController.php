@@ -22,12 +22,19 @@ class AdminScheduleDayController extends AdminController {
 			for ($i=$availability->start; $i < $availability->end; $i+=50)
 				$available[$availability->ta_id][$i] = $availability->prefered;
 
+		$schedule = Schedule::day($day);
+		$assigned = array();
+		foreach ($schedule as $shift)
+			for ($i=$shift->start; $i < $shift->end; $i+=50)
+				$assigned[$shift->ta_id][$i] = 1;
+
 		$this->navbar['Schedule']['active'] = true;
 
 		return View::make('admin/schedule_day')
 					->with('user', $this->user)
 					->with('navbar', $this->navbar)
 					->with('available',$available)
+					->with('assigned', $assigned)
 					->with('day',$day)
 					->with('tas',$tas)
 					->with('time', $time);
@@ -67,6 +74,15 @@ class AdminScheduleDayController extends AdminController {
 
 			if ( $start != null )
 				$shifts[] = array('ta_id'=>$ta_id,'day'=>$day,'start'=>$start,'end'=>$end);
+		}
+
+		$old_shifts = Schedule::day($day);
+		foreach ($old_shifts as $shift) {
+			$ta = $shift->TA();
+			$ta->current_hours -= ($shift->end - $shift->start) / 50 / 2;
+			$ta->save();
+
+			$shift->delete();
 		}
 
 		foreach ($shifts as $shift){
