@@ -32,4 +32,52 @@ class AdminScheduleDayController extends AdminController {
 					->with('tas',$tas)
 					->with('time', $time);
 	}
+
+	public function postIndex()
+	{
+		$day = Input::get('day');
+		$tas = Input::except(array('_token','day'));
+
+		$shifts = array();
+		
+		foreach ($tas as $ta_id => $times)
+		{
+			$start = null;
+			$end;
+			$ta_id = explode('-', $ta_id)[1];
+
+			foreach ($times as $time => $value)
+			{
+				if ( $start != null )
+				{
+					if ($value == 0 || $time != $end )
+					{
+						$shifts[] = array('ta_id'=>$ta_id,'day'=>$day,'start'=>$start,'end'=>$end);
+						$start = null;
+					} 
+				}
+
+				if ( $value == 1 )
+				{
+					if ( $start == null )
+						$start = $time;
+					$end = $time+50;
+				}
+			}
+
+			if ( $start != null )
+				$shifts[] = array('ta_id'=>$ta_id,'day'=>$day,'start'=>$start,'end'=>$end);
+		}
+
+		foreach ($shifts as $shift){
+			Schedule::create($shift);
+
+			$ta = TA::find($shift['ta_id']);
+			$ta->current_hours += ($shift['end'] - $shift['start']) / 50 / 2;
+			$ta->save();
+		}
+
+		Session::flash('success', "$day's Schedule saved!");
+		return Redirect::to('admin/schedule');
+	}
 }

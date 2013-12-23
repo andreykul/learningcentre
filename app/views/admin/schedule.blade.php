@@ -1,7 +1,14 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-
+    	@if (Session::get('success'))
+			<div class="row">
+				<div class="alert alert-info text-center">
+					{{ Session::get('success') }}
+				</div>
+			</div>
+		@endif
+    	<fieldset>
         	<legend class="row">Schedule</legend>
 			<div class="row">
 	        	<table class="table table-striped table-bordered table-condensed">

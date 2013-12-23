@@ -6,6 +6,10 @@ class Schedule extends Eloquent {
 
     public $timestamps = false;
 
-    protected $fillable = array('ta_id', 'start', 'end');
+    protected $fillable = array('ta_id', 'day', 'start', 'end');
 
+    public static function day($day)
+    {
+    	return Schedule::where('day','=',$day)->get();
+    }
 }
