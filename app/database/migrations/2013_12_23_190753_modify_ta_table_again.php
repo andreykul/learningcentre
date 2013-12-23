@@ -13,8 +13,9 @@ class ModifyTaTableAgain extends Migration {
 	{
 		Schema::table('ta', function($table)
 		{
-			$table->renameColumn('hours', 'wanted_hours');
-		    $table->integer('current_hours')->default(0)->after('hours');
+		    $table->float('current_hours')->default(0)->after('hours');
+		    $table->float('wanted_hours')->after('hours');
+			$table->dropColumn('hours');
 		});
 	}
 
@@ -27,7 +28,8 @@ class ModifyTaTableAgain extends Migration {
 	{
 		Schema::table('ta', function($table)
 		{
-			$table->renameColumn('wanted_hours', 'hours');
+			$table->integer('hours')->after('graduate');
+			$table->dropColumn('wanted_hours');
 		    $table->dropColumn('current_hours');
 		});
 	}
