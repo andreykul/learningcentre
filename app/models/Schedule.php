@@ -12,4 +12,9 @@ class Schedule extends Eloquent {
     {
     	return Schedule::where('day','=',$day)->get();
     }
+
+    public function TA()
+    {
+    	return $this->belongsTo('TA', 'ta_id')->first();
+    }
 }
