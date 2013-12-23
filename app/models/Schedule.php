@@ -7,4 +7,5 @@ class Schedule extends Eloquent {
     public $timestamps = false;
 
     protected $fillable = array('ta_id', 'start', 'end');
+
 }

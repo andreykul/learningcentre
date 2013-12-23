@@ -2,7 +2,9 @@
 @section("content")
     <div class="col-md-12">
     	<fieldset id="schedule">
-        	<legend class="row"><a class="btn btn-lg btn-link" href="{{ url('admin/schedule') }}"><span class="glyphicon glyphicon-circle-arrow-left"></span></a> {{ $day }}'s Schedule</legend>
+        	<legend class="row"><a class="btn btn-lg btn-link" href="{{ url('admin/schedule') }}">
+        		<span class="glyphicon glyphicon-circle-arrow-left"></span></a> {{ $day }}'s Schedule
+        	</legend>
 			<div class="row">
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
@@ -10,6 +12,8 @@
 		        			<th class="text-center">Time</th>
 		        			@foreach ($tas as $ta)
 								<th class="text-center">{{ $ta->name }}</th>
+								{{ Form::hidden($ta->id.'_start') }}
+								{{ Form::hidden($ta->id.'_end') }}
 		        			@endforeach
 		        		</tr>
 		        	</thead>
@@ -32,6 +36,9 @@
 											@endif
 										@endif
 									>
+									@if ( isset($available[$ta->id][$i]) )
+										{{ Form::hidden($ta->id.'-'.$i, false) }}
+									@endif
 									</td>
 								@endforeach
 
@@ -40,7 +47,11 @@
 		        	</tbody>
 		        </table>
 	        </div>
+	        <div class="row">
+	        	{{ Form::submit("Save $day's Schedule", array('class' => 'btn btn-lg btn-primary center-block') ) }}
+	        </div>
 		</fieldset>
+		<!-- Special for this page only -->
 		{{ HTML::script('js/admin-schedule.js') }}
     </div>
 @stop

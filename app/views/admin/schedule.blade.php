@@ -42,11 +42,17 @@
 		        </table>
 	        </div>
 		</fieldset>
+		<!-- Special for this page only -->
 		<script>
 			$('td').click(function(){
 				day = $(this).attr('id').split('-')[0];
-				window.location.href = 'schedule/day/'+day;
+				window.location.href = 'schedule/day?day='+day;
 			});
 		</script>
+		<style>
+			td:hover{
+				cursor: pointer;
+			}
+		</style>
     </div>
 @stop
