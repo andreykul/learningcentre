@@ -17,7 +17,7 @@ class TaTableSeeder extends Seeder {
             'picture' => 'default.jpeg',
             'year' => 4,
             'graduate' => false,
-            'hours' => 10
+            'wanted_hours' => 10
             )
         );
     }

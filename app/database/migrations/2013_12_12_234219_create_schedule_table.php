@@ -14,6 +14,7 @@ class CreateScheduleTable extends Migration {
 		Schema::create('schedule', function($table){
 			$table->increments('id');
 			$table->integer('ta_id');
+			$table->string('day');
 			$table->integer('start')->unsigned()->default(0);
 			$table->integer('end')->unsigned()->default(0);
 		});
