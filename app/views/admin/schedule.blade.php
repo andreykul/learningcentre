@@ -3,7 +3,7 @@
     <div class="col-md-12">
     	@if (Session::get('success'))
 			<div class="row">
-				<div class="alert alert-info text-center">
+				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
 			</div>
