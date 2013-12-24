@@ -30,23 +30,43 @@
 								</td>
 
 			        			@foreach ($days as $day)
+			        				
 									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
-									@if (isset($week[$day][$i]))
-										@if (($week[$day][$i] / $max) > (2 / 3))
-											class="success"
-										@elseif (($week[$day][$i] / $max) > (1 / 3))
-											class="warning"
-										@else
-											class="danger"
+										@if (isset($assigned[$day][$i]))
+											class="info"
+										@elseif (isset($week[$day][$i]))
+											@if (($week[$day][$i] / $max) > (2 / 3))
+												class="success"
+											@elseif (($week[$day][$i] / $max) > (1 / 3))
+												class="warning"
+											@else
+												class="danger"
+											@endif
 										@endif
-									@endif
-									></td>
+										>
+										@if (isset($assigned[$day][$i]))
+											{{ $assigned[$day][$i][0] }}
+				        					@for ($j=1; $j < count($assigned[$day][$i]); $j++)
+												{{ '&amp '.$assigned[$day][$i][$j] }}
+											@endfor
+			        					@endif
+									</td>
 								@endforeach
 
 							</tr>	
 			        	@endfor
 		        	</tbody>
 		        </table>
+	        </div>
+	        <div class="row">
+	        	<div class="col-md-4 col-md-offset-4">
+	        		{{ Form::open(['url'=>'admin/schedule', 'role'=>'form']) }}
+		        		{{ Form::submit('Publish', array('class'=>'btn btn-lg btn-primary btn-block')) }}
+		        	{{ Form::close() }}
+		        	{{ Form::open(['url'=>'admin/schedule', 'method'=>'delete', 'role'=>'form']) }}
+		        		{{ Form::submit('Reset', array('class'=>'btn btn-lg btn-danger btn-block')) }}
+		        	{{ Form::close() }}	
+	        	</div>
 	        </div>
 		</fieldset>
 		<!-- Special for this page only -->
