@@ -11,6 +11,8 @@
 
 Route::controller('admin/availability/download', 'AdminAvailabilityDownloadController');
 Route::controller('admin/availability', 'AdminAvailabilityController');
+Route::controller('admin/schedule/day', 'AdminScheduleDayController');
+Route::controller('admin/schedule', 'AdminScheduleController');
 Route::controller('admin/tas', 'AdminTAsController');
 Route::controller('admin', 'AdminHomeController');
 

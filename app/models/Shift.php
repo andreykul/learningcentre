@@ -22,4 +22,9 @@ class Shift extends Eloquent {
                 ->whereBetween('date', array($start, $end))->get();
     }
 
+    public static function between($start, $end)
+    {
+        return Shift::whereBetween('date', array($start, $end))->get();
+    }
+
 }

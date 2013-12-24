@@ -48,8 +48,8 @@
 							<input type="number" name="year" class="form-control" value="{{ $ta->year }}"/>
 						</div>
 		        		<div class="form-group">
-							{{ Form::label('hours', 'Hours Wanted') }}
-							<input type="number" name="hours" class="form-control" value="{{ $ta->hours }}"/>
+							{{ Form::label('wanted_hours', 'Hours Wanted') }}
+							<input type="number" name="wanted_hours" class="form-control" value="{{ $ta->wanted_hours }}"/>
 						</div>
 
 		        	</div>

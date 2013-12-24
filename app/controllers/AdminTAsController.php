@@ -61,21 +61,4 @@ class AdminTAsController extends AdminController {
 		return Redirect::to('admin/tas');
 	}
 
-	public function postTeachingAssistants()
-	{
-		// $settings = Input::all();
-
-		// unset($settings['_token']);
-
-		// foreach ($settings as $key => $value) {
-		// 	$setting = Settings::get($key);
-		// 	$setting->value = $value;
-		// 	$setting->save();
-		// }
-		
-		// Session::flash('success',true);
-
-		// return Redirect::to('admin/availability');
-	}
-
 }

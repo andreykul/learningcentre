@@ -22,6 +22,21 @@ class UserTableSeeder extends Seeder {
     		)
     	);
 
+        User::create(
+            array(
+                'password' => Hash::make('password'),
+                'email' => 'ta2@cs.dal.ca',
+                'role' => 'ta'
+            )
+        );
+
+        User::create(
+            array(
+                'password' => Hash::make('password'),
+                'email' => 'ta3@cs.dal.ca',
+                'role' => 'ta'
+            )
+        );
     	
     }
 }
