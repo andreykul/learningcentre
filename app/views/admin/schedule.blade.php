@@ -8,6 +8,33 @@
 				</div>
 			</div>
 		@endif
+
+		<div class="modal fade" aria-hidden="true">
+			{{ Form::open(array('url'=>'admin/schedule', 'role'=>"form")) }}
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Publish Schedule</h4>
+					</div>
+					<div class="modal-body">
+						<!-- <div class="col-md-6"> -->
+							{{ Form::label('start-date',"Start Date:") }}
+							{{ Form::text('start-date',null, array('id'=>'start-date', 'class'=>'form-control date-input')) }}
+						<!-- </div>
+						<div class="col-md-6"> -->
+							{{ Form::label('end-date',"End Date:") }}
+							{{ Form::text('end-date',null, array('id'=>'end-date', 'class'=>'form-control date-input')) }}
+						<!-- </div> -->
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Publish</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+			{{ Form::close() }}
+		</div><!-- /.modal -->
     	<fieldset>
         	<legend class="row">Schedule</legend>
 			<div class="row">
@@ -60,9 +87,7 @@
 	        </div>
 	        <div class="row">
 	        	<div class="col-md-4 col-md-offset-4">
-	        		{{ Form::open(['url'=>'admin/schedule', 'role'=>'form']) }}
-		        		{{ Form::submit('Publish', array('class'=>'btn btn-lg btn-primary btn-block')) }}
-		        	{{ Form::close() }}
+		        		{{ Form::button('Publish', array('id'=>'publish','class'=>'btn btn-lg btn-primary btn-block')) }}
 		        	{{ Form::open(['url'=>'admin/schedule', 'method'=>'delete', 'role'=>'form']) }}
 		        		{{ Form::submit('Reset', array('class'=>'btn btn-lg btn-danger btn-block')) }}
 		        	{{ Form::close() }}	
@@ -70,12 +95,7 @@
 	        </div>
 		</fieldset>
 		<!-- Special for this page only -->
-		<script>
-			$('td').click(function(){
-				day = $(this).attr('id').split('-')[0];
-				window.location.href = 'schedule/day?day='+day;
-			});
-		</script>
+		{{ HTML::script('js/admin-schedule.js') }}
 		<style>
 			td:hover{
 				cursor: pointer;

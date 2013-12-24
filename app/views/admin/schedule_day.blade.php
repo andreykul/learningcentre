@@ -61,6 +61,6 @@
 	        {{ Form::close() }}
 		</fieldset>
 		<!-- Special for this page only -->
-		{{ HTML::script('js/admin-schedule.js') }}
+		{{ HTML::script('js/admin-schedule-day.js') }}
     </div>
 @stop
