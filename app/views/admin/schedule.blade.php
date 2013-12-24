@@ -7,6 +7,12 @@
 					{{ Session::get('success') }}
 				</div>
 			</div>
+		@elseif (Session::get('fail'))
+			<div class="row">
+				<div class="alert alert-danger text-center">
+					{{ Session::get('fail') }}
+				</div>
+			</div>
 		@endif
 
 		<div class="modal fade" aria-hidden="true">
@@ -18,14 +24,11 @@
 						<h4 class="modal-title">Publish Schedule</h4>
 					</div>
 					<div class="modal-body">
-						<!-- <div class="col-md-6"> -->
-							{{ Form::label('start-date',"Start Date:") }}
-							{{ Form::text('start-date',null, array('id'=>'start-date', 'class'=>'form-control date-input')) }}
-						<!-- </div>
-						<div class="col-md-6"> -->
-							{{ Form::label('end-date',"End Date:") }}
-							{{ Form::text('end-date',null, array('id'=>'end-date', 'class'=>'form-control date-input')) }}
-						<!-- </div> -->
+						{{ Form::label('start_date',"Start Date:") }}
+						{{ Form::text('start_date', date("Y-m-d"), array('id'=>'start_date', 'class'=>'form-control date-input')) }}
+						<br>
+						{{ Form::label('end_date',"End Date:") }}
+						{{ Form::text('end_date',null, array('id'=>'end_date', 'class'=>'form-control date-input')) }}
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

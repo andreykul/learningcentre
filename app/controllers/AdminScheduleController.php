@@ -66,4 +66,66 @@ class AdminScheduleController extends AdminController {
 					->with('assigned',$assigned)
 					->with('time', $time);
 	}
+
+	public function postIndex()
+	{
+		$dates = Input::except('_token');
+		
+		//Check dates
+		//Start date must be at least today
+		if ( date('Y-m-d',strtotime($dates['start_date'])) < date('Y-m-d') )
+			$dates['start_date'] = date('Y-m-d');
+
+		if ( date('Y-m-d',strtotime($dates['end_date'])) <= date('Y-m-d') || $dates['end_date'] == "")
+		{
+			Session::flash('fail',"Failed to publish! Bad End date!");
+			return Redirect::to('admin/schedule');
+		}
+
+		//Erase all shifts in within the date range
+		$shifts = Shift::between($dates['start_date'], $dates['end_date']);
+
+		foreach ($shifts as $shift)
+			$shift->delete();
+
+		//Create new shifts
+		$schedule = Schedule::all();
+
+		foreach ($schedule as $shift) {
+			$shift_date = new DateTime(date("Y-m-d", strtotime("this {$shift->day}")));
+			while ( $shift_date->format('Y-m-d') <= $dates['end_date'] )
+			{
+				Shift::create(
+					array(
+						'ta_id' => $shift->ta_id,
+						'date' => $shift_date->format('Y-m-d'),
+						'start' => $shift->start,
+						'end' => $shift->end
+					)
+				);
+
+				$shift_date->modify("next {$shift->day}");
+			}
+		}
+
+		Session::flash('success',"Schedule has been published!");
+		return Redirect::to('admin/schedule');
+	}
+
+	public function deleteIndex()
+	{
+		$schedule = Schedule::all();
+
+		foreach ($schedule as $shift)
+			$shift->delete();
+
+		$tas = TA::active();
+		foreach ($tas as $ta) {
+			$ta->current_hours = 0;
+			$ta->save();
+		}
+
+		Session::flash('success', "Schedule has been reset!");
+		return Redirect::to("admin/schedule");
+	}
 }
