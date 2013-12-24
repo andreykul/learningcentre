@@ -46,6 +46,15 @@ class AdminScheduleController extends AdminController {
 			}
 		}
 
+		$shifts = Schedule::all();
+		$assigned = array();
+		foreach ($shifts as $shift) {
+			for ($i=$shift->start; $i < $shift->end; $i+=50){
+				$ta = $shift->TA();
+				$assigned[$shift->day][$i][] = $ta->name;
+			}
+		}
+
 		$this->navbar['Schedule']['active'] = true;
 
 		return View::make('admin/schedule')
@@ -54,6 +63,7 @@ class AdminScheduleController extends AdminController {
 					->with('max',$max_available)
 					->with('days', $days)
 					->with('week', $week)
+					->with('assigned',$assigned)
 					->with('time', $time);
 	}
 }
