@@ -17,7 +17,59 @@ class AppController extends BaseController {
 			if (Auth::user()->role == 'ta')
 				return Redirect::to('ta');
 		}
-		return View::make('main');
+
+        $week = array(
+            "Sunday" => array(),
+            "Monday" => array(),
+            "Tuesday" => array(),
+            "Wednesday" => array(),
+            "Thursday" => array(),
+            "Friday" => array(),
+            "Saturday" => array()
+        );
+
+        $days = array(
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        );
+
+        $start = Settings::get("availability_start_hour")->value;
+        $start = Time::ToNumber($start);
+        $time['start'] = $start;
+
+        $end = Settings::get("availability_end_hour")->value;
+        $end = Time::ToNumber($end);
+        $time['end'] = $end;
+
+        $week_start = time() - (date('w') * 24 * 60 * 60);
+        $week_start = date('Y-m-d', $week_start);
+        $week_end = strtotime($week_start) + (6 * 24 * 60 * 60);
+        $week_end = date('Y-m-d', $week_end);
+
+        $shifts = Shift::between($week_start,$week_end);
+
+        $assigned = array();
+        foreach ($shifts as $shift) {
+            for ($i=$shift->start; $i < $shift->end; $i+=50){
+                $ta = $shift->TA();
+                if (isset($ta))
+                {
+                    $day = date('l', strtotime($shift->date));
+                    $assigned[$day][$i][] = $ta->name;
+                }
+            }
+        }
+
+		return View::make('main')
+                ->with('days', $days)
+                ->with('week', $week)
+                ->with('assigned',$assigned)
+                ->with('time', $time);
 	}
 
 	public function getLogin()

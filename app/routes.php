@@ -20,6 +20,7 @@ Route::controller('ta/shifts', 'TaShiftsController');
 Route::controller('ta/profile', 'TaProfileController');
 Route::controller('ta/availability', 'TaAvailabilityController');
 Route::controller('ta/setup', 'TaSetupController');
+Route::controller('ta/public/profile', 'TaPublicProfileController');
 Route::controller('ta', 'TaHomeController');
 
 Route::controller('/','AppController');
