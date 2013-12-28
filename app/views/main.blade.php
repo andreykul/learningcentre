@@ -1,6 +1,6 @@
 @extends("layout")
 @section("content")
-    <div class="col-md-8">
+    <div class="col-md-12">
         <fieldset>
         	<legend class="row">Schedule</legend>
 			<div class="row">
@@ -24,7 +24,8 @@
 
 			        			@foreach ($days as $day)
 			        				
-									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}">
+									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
+										class="text-center">
 										@if (isset($assigned[$day][$i]))
 											{{ link_to('ta/public/profile?ta='.$assigned[$day][$i][0], $assigned[$day][$i][0]) }}
 				        					@for ($j=1; $j < count($assigned[$day][$i]); $j++)
@@ -40,8 +41,5 @@
 		        </table>
 	        </div>
 		</fieldset>
-    </div>
-    <div class="col-md-4">
-        Any extra stuff on the side
     </div>
 @stop
