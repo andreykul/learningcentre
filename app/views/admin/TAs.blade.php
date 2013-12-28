@@ -51,7 +51,12 @@
 				<label>Existing Courses</label>
 				<ul class='list-unstyled'>
 					@foreach ($courses as $course)
-						<li>{{ "{$course->prefix} {$course->number} {$course->name}" }}</li>
+						<li>
+							{{ Form::open(array('url'=>'admin/courses', 'role'=>'form', 'method'=>'delete')) }}
+							<button type="submit" name="course_id" value="{{ $course->id }}" class="btn-link"><span class="text-danger glyphicon glyphicon-remove"></span></button>
+							{{ "{$course->prefix} {$course->number} {$course->name}" }}
+							{{ Form::close() }}
+						</li>
 					@endforeach
 				</ul>
 			</fieldset>

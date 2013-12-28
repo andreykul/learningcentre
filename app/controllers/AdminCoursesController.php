@@ -16,10 +16,7 @@ class AdminCoursesController extends AdminController {
 			$existing_course = Course::get($prefix,$number);
 
 			if(isset($existing_course))
-			{
 				Session::flash('course_fail','Course already exists!');
-				return Redirect::to('admin/tas');
-			}
 			else
 			{
 				Course::create(
@@ -31,15 +28,28 @@ class AdminCoursesController extends AdminController {
 				);
 
 				Session::flash('course_success','Course has been added!');
-				return Redirect::to('admin/tas');		
 			}
 
 		}
-		else
-		{
-			Session::flash('course_fail','Please provide prefix and number for the course.');
-			return Redirect::to('admin/tas');
-		}
+		else Session::flash('course_fail','Please provide prefix and number for the course.');
+			
 
+		return Redirect::to('admin/tas');
+	}
+
+	public function deleteIndex()
+	{
+		$course_id = Input::get('course_id');
+
+		$course = Course::find($course_id);
+
+		if(isset($course))
+		{
+			$course->delete();
+			Session::flash('course_success','Course has been removed!');
+		}
+		else Session::flash('course_fail','Course not found!');
+
+		return Redirect::to('admin/tas');
 	}
 }
