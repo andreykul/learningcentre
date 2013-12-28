@@ -51,7 +51,8 @@ class AdminScheduleController extends AdminController {
 		foreach ($shifts as $shift) {
 			for ($i=$shift->start; $i < $shift->end; $i+=50){
 				$ta = $shift->TA();
-				$assigned[$shift->day][$i][] = $ta->name;
+				if(isset($ta))
+					$assigned[$shift->day][$i][] = $ta->name;
 			}
 		}
 
