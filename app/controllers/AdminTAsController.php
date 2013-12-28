@@ -7,9 +7,12 @@ class AdminTAsController extends AdminController {
 	{
 		$this->navbar['TAs']['active'] = true;
 
+		$courses = Course::all();
+
 		$tas = TA::all();
 
 		return View::make('admin/TAs')
+					->with('courses',$courses)
 					->with('tas',$tas)
 					->with('user', $this->user)
 					->with('navbar', $this->navbar);
