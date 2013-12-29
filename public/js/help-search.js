@@ -6,9 +6,10 @@ $(function(){
 			success: function(data){
 				knowledge = JSON.parse(data);
 
+				$('td').removeClass('success warning danger');
+
 				$('td > a').each(function(index, link){
 					td = $(link).parent();
-					td.removeClass('success warning danger');
 					ta_name = $(link).text();
 					if ( knowledge[ta_name] == 5)
 						td.addClass('success');
