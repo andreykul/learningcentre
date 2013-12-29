@@ -9,9 +9,21 @@ class TaPublicProfileController extends BaseController {
 		if(! isset($ta))
 			return Redirect::to('/');
 
-		$profile = TA::where('name','=',$ta)->first();
+		$ta = TA::where('name','=',$ta)->first();
+
+		$courses = Course::all();
+
+		$knowledge =array();
+		foreach ($courses as $course) {
+			$course_knowledge = CourseKnowledge::forCourseAndTA($course->id,$ta->id);
+			if ( isset($course_knowledge) )
+				$knowledge[$course->id] = $course_knowledge->knowledge;
+			else $knowledge[$course->id] = 0;
+		}
 
         return View::make('ta/public/profile')
-                    ->with('ta', $profile);
+                    ->with('ta', $ta)
+                    ->with('courses', $courses)
+					->with('knowledge',$knowledge);
 	}
 }
