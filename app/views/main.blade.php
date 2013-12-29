@@ -1,6 +1,18 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
+    	<div class="row">
+    		<label for="courseSelection">Search Help For:</label> <br>
+    		<select id="courseSelection" data-width="auto">
+    			@foreach ($courses  as $course)
+    				<option value="{{ $course->id }}">
+    					{{ "{$course->prefix} {$course->number} {$course->name}" }}
+    				</option>
+    			@endforeach
+    		</select>
+    		<button id="searchCourse" class="btn btn-primary">Search</button>
+    	</div>
+    	<br>
         <fieldset>
         	<legend class="row">Schedule</legend>
 			<div class="row">
@@ -41,5 +53,6 @@
 		        </table>
 	        </div>
 		</fieldset>
+		{{ HTML::script('js/help-search.js') }}
     </div>
 @stop
