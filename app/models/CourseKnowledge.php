@@ -1,6 +1,6 @@
 <?php
 
-class Course extends Eloquent {
+class CourseKnowledge extends Eloquent {
 
     protected $table = 'course_knowledge';
 
@@ -16,5 +16,10 @@ class Course extends Eloquent {
     public function Course()
     {
     	return $this->belongsTo('Course','course_id')->first();
+    }
+
+    public static function forCourseAndTA($course_id, $ta_id)
+    {
+        return CourseKnowledge::whereRaw('course_id = ? AND ta_id = ?',array($course_id,$ta_id))->first();
     }
 }
