@@ -25,5 +25,7 @@ Route::controller('ta/setup', 'TaSetupController');
 Route::controller('ta/public/profile', 'TaPublicProfileController');
 Route::controller('ta', 'TaHomeController');
 
+Route::controller('courses/help','CoursesHelpController');
+
 Route::controller('/','AppController');
 
