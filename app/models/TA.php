@@ -32,6 +32,11 @@ class TA extends Eloquent {
                 ->whereBetween('date', array($start, $end))->get();
         }
     }
+
+    public function knowledge()
+    {
+        return $this->hasMany('CourseKnowledge','ta_id')->get();
+    }
  
     public static function active()
     {

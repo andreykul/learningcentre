@@ -51,6 +51,9 @@
 							{{ Form::label('wanted_hours', 'Hours Wanted') }}
 							<input type="number" name="wanted_hours" class="form-control" value="{{ $ta->wanted_hours }}"/>
 						</div>
+						<div class="form-group">
+							{{ link_to('ta/profile/courses', "Courses Knowledge Rating", $attributes = array('class'=>'btn btn-lg btn-block btn-info')) }}
+						</div>
 
 		        	</div>
 		        </div>
