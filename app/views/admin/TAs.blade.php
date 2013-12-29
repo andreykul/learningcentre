@@ -21,8 +21,44 @@
 						{{ Form::label('email', 'Email') }}
 						{{ Form::email('email', null, array("class" => "form-control") ) }}
 					</div>
-					{{ Form::submit("Add", array('class' => 'btn btn-block btn-primary')) }}
+					{{ Form::submit("Add TA", array('class' => 'btn btn-block btn-primary')) }}
 				{{ Form::close() }}
+			</fieldset>
+			<br>
+			<fieldset>
+				<legend>Courses</legend>
+				@if ( Session::get('course_fail') )
+					<div class="row">
+						<div class="alert alert-danger text-center">
+							{{ Session::get('course_fail') }}
+						</div>
+					</div>
+				@elseif ( Session::get('course_success') )
+					<div class="row">
+						<div class="alert alert-success text-center">
+							{{ Session::get('course_success') }}
+						</div>
+					</div>
+				@endif
+				{{ Form::open(array('url'=>'admin/courses', 'role'=>'form')) }}
+					<div class="form-group">
+						{{ Form::label('course', 'Course') }}
+						{{ Form::text('course', null, array("class" => "form-control","placeholder"=>"CSCI 2110 Introfuction to Computer Science III") ) }}
+					</div>
+					{{ Form::submit("Add Course", array('class' => 'btn btn-block btn-primary')) }}
+				{{ Form::close() }}
+				<br>
+				<label>Existing Courses</label>
+				<ul class='list-unstyled'>
+					@foreach ($courses as $course)
+						<li>
+							{{ Form::open(array('url'=>'admin/courses', 'role'=>'form', 'method'=>'delete')) }}
+							<button type="submit" name="course_id" value="{{ $course->id }}" class="btn-link"><span class="text-danger glyphicon glyphicon-remove"></span></button>
+							{{ "{$course->prefix} {$course->number} {$course->name}" }}
+							{{ Form::close() }}
+						</li>
+					@endforeach
+				</ul>
 			</fieldset>
 		</div>
 

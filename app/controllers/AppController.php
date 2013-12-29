@@ -65,7 +65,10 @@ class AppController extends BaseController {
             }
         }
 
+        $courses = Course::all();
+
 		return View::make('main')
+                ->with('courses',$courses)
                 ->with('days', $days)
                 ->with('week', $week)
                 ->with('assigned',$assigned)
