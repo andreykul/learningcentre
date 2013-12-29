@@ -13,10 +13,6 @@
         			</tr>
         		</thead>
         		<tbody>
-        			<!-- <tr>
-        				<td></td>
-        				<td><span class='pull-left'>No Knowledge</span><span class='pull-right'>Know Well</span></td>
-        			</tr> -->
         			@foreach ($courses as $course)
         				<tr>
         					<td class="text-center">
