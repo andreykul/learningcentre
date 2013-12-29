@@ -11,6 +11,7 @@ $(function(){
 				$('td > a').each(function(index, link){
 					td = $(link).parent();
 					ta_name = $(link).text();
+
 					if ( knowledge[ta_name] == 5 )
 						td.addClass('success').removeClass('warning danger');
 					else if (knowledge[ta_name] >= 3 && ! td.hasClass('success'))
