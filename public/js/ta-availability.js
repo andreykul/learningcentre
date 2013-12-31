@@ -12,7 +12,7 @@ $(function() {
 
 	//Make the table selectable
 	$( "#selectable" ).selectable({
-		filter: "td",
+		filter: ".selectable",
 		selected: function(event, ui){
 			//selected item
 			item = $(ui.selected);
