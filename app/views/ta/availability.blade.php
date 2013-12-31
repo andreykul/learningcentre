@@ -62,13 +62,15 @@
 
 			        			@foreach ($days as $day)
 									<td id="{{ $day }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
+										class="selectable
 										@if ( isset($week[$day][$i]) )
 											@if ($week[$day][$i])
-												class="success"
+												success
 											@else
-												class="warning"
+												warning
 											@endif
 										@endif
+										"
 									></td>
 								@endforeach
 
