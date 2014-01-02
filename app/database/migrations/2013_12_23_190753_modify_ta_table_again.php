@@ -14,7 +14,7 @@ class ModifyTaTableAgain extends Migration {
 		Schema::table('ta', function($table)
 		{
 		    $table->float('current_hours')->default(0)->after('hours');
-		    $table->float('wanted_hours')->after('hours');
+		    $table->float('wanted_hours')->default(4)->after('hours');
 			$table->dropColumn('hours');
 		});
 	}

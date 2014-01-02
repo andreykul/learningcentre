@@ -5,7 +5,7 @@
     		<legend>Availabiltiy Settings</legend>
 			@if (Session::get('success'))
 				<div class="row">
-					<div class="alert alert-info text-center">
+					<div class="alert alert-success text-center">
 						Changes have been saved!
 					</div>
 				</div>
@@ -70,6 +70,14 @@
     			{{ Form::close() }}
     		</div>
     		<br>
+
+    		@if (Session::get('remind_success'))
+    			<div class="row">
+					<div class="alert alert-success text-center">
+						{{ Session::get('remind_success') }}
+					</div>
+				</div>
+    		@endif
     		<table class="table table-striped">
     			<thead>
     				<tr>
@@ -79,6 +87,17 @@
     				</tr>
     			</thead>
     			<tbody>
+    				<tr>
+    					<td></td>
+    					<td></td>
+    					<td>
+    						{{ Form::open(["url" => "admin/availability/remind", "role" => "form"]) }}
+								{{ Form::button("<span class='glyphicon glyphicon-envelope'></span> Remind All",
+									array("class" => "btn btn-info btn-block","type"=>"submit")) 
+								}}
+							{{ Form::close() }}
+    					</td>
+    				</tr>
     				@foreach ($tas as $ta)
     					<tr>
     						<td class="text-center">{{ $ta->name }}</td>
@@ -91,8 +110,9 @@
 		    				</td>
 		    				<td class="text-center">
 		    					{{ Form::open(["url" => "admin/availability/remind", "role" => "form"]) }}
+		    						{{ Form::hidden('ta_id',$ta->id) }}
 		    						{{ Form::button("<span class='glyphicon glyphicon-envelope'></span> Remind",
-		    							array("class" => "btn btn-warning btn-block","disabled"=>"disabled","type"=>"submit")) 
+		    							array("class" => "btn btn-warning btn-block","type"=>"submit")) 
 		    						}}
     							{{ Form::close() }}
 		    				</td>

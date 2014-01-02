@@ -41,4 +41,40 @@ class AdminAvailabilityController extends AdminController {
 		return Redirect::to('admin/availability');
 	}
 
+	public function postRemind()
+	{
+		$ta_id = Input::get('ta_id');
+
+		if(isset($ta_id))
+		{
+			$ta = TA::find($ta_id);
+			$email = $ta->user()->email;
+
+			Mail::send('emails.availabilityReminder', array('name' => $ta->name), function($message) use ($ta, $email)
+			{
+				$message->to($email, $ta->name )->subject('Please Fill Your Availability!');
+			});
+
+			return Redirect::to('admin/availability')
+					->with('remind_success',"Reminder has been sent to {$ta->name}!");	
+		}
+		else
+		{
+			$tas = TA::active();
+
+			foreach ($tas as $ta) {
+				$email = $ta->user()->email;
+
+				Mail::send('emails.availabilityReminder', array('name' => $ta->name), function($message) use ($email,$ta)
+				{
+					$message->to($email, $ta->name)->subject('Please Fill Your Availability!');
+				});
+			}
+
+			return Redirect::to('admin/availability')
+					->with('remind_success',"Reminder has been sent to all!");	
+		}
+		
+	}
+
 }
