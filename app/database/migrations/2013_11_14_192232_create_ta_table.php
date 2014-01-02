@@ -16,7 +16,7 @@ class CreateTaTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id');
 			$table->string('name');
-			$table->text('description');
+			$table->text('description')->nullable();
 			$table->string('picture')->default('default.jpeg');
 			$table->integer('year')->unsigned()->default(1);
 			$table->boolean('graduate')->default(false);
