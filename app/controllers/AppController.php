@@ -77,6 +77,8 @@ class AppController extends BaseController {
 
 	public function getLogin()
 	{
+        echo Redirect::back();
+        
         if (Auth::check())
             return Redirect::to("/");
 
