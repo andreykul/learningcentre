@@ -63,3 +63,17 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 	
 ###Populate/Seed
 * run `php artisan db:seed`
+
+---
+
+##Development
+* New Issue Branch
+	* `git checkout -b issue-#`
+	* `git push -u origin issue-#`
+* Working on somebody's branch (Will download their branches)
+	* `git fetch`
+* Merge problems
+	* You will be given your code and the other code sepperated with special symbols.
+	* Decided what part to remove and what to keep
+	* Add and Commit
+	* You are good to go, push
