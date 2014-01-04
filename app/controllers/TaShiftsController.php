@@ -183,7 +183,7 @@ class TaShiftsController extends TaController {
 				//Remove all bids for the shift
 				$this->clearBids($shift->id);
 
-				Session::flash('success', "Shift has been added to your schedule.");
+				Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 			}
 			else Session::flash('fail', "Bid overlaps with existing shift.");
 		}
@@ -242,7 +242,7 @@ class TaShiftsController extends TaController {
 						//Remove the old shift
 						Shift::destroy($shift->id);
 
-						Session::flash('success', "Shift has been added to your schedule.");
+						Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 					}
 					else Session::flash('success', "Bid has been changed.");
 				}
