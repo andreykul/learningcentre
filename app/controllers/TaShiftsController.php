@@ -120,19 +120,35 @@ class TaShiftsController extends TaController {
 	{
 		$shift = Shift::find(Input::get('shift_id'));
 
+		$ta_id = Auth::user()->TA()->id;
+
 		//make sure the shift belongs to the TA
-		if ($shift->ta_id == Auth::user()->TA()->id )
+		if ($shift->ta_id == $ta_id )
 		{
 			$shift->ta_id = null;
 			$shift->save();
 
 			Session::flash('success', "Shift has been dropped.");
 
-			/* * * * * * * * * * * * * * * * * * * * * * * * *
-			 *												 *
-			 *			Logic to let other TAs know			 *
-			 *												 *
-			 * * * * * * * * * * * * * * * * * * * * * * * * */
+			//General the week start for the shift
+			$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
+			$week_start = date('Y-m-d', $week_start);
+
+			$tas = TA::active();
+
+			//Send email to all active TAs
+			foreach ($tas as $ta) {
+				$email = $ta->user()->email;
+
+				//No need to send email to TA who dropped the shift
+				if ($ta_id != $ta->id)
+				{
+					Mail::send('emails.shiftAvailable', array('name' => $ta->name, 'shift'=>$shift, 'week_start'=>$week_start), function($message) use ($ta, $email)
+					{
+						$message->to($email, $ta->name )->subject('Shift Available!');
+					});
+				}
+			}
 		}
 		//error message, Shift does not belong to the TA
 		else Session::flash('fail', "Shift does not belong to you.");
