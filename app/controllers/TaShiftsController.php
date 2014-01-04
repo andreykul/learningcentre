@@ -122,17 +122,17 @@ class TaShiftsController extends TaController {
 
 		$ta_id = Auth::user()->TA()->id;
 
+		//The week start for the shift
+		$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
+		$week_start = date('Y-m-d', $week_start);
+
 		//make sure the shift belongs to the TA
 		if ($shift->ta_id == $ta_id )
 		{
 			$shift->ta_id = null;
 			$shift->save();
 
-			Session::flash('success', "Shift has been dropped.");
-
-			//General the week start for the shift
-			$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
-			$week_start = date('Y-m-d', $week_start);
+			Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 
 			$tas = TA::active();
 
@@ -153,7 +153,7 @@ class TaShiftsController extends TaController {
 		//error message, Shift does not belong to the TA
 		else Session::flash('fail', "Shift does not belong to you.");
 
-		return Redirect::to('ta/shifts');
+		return Redirect::to('ta/shifts?week_start='.$week_start);
 	}
 
 	//Method to make a bid for a shift
@@ -163,6 +163,9 @@ class TaShiftsController extends TaController {
 
 		$shift = Shift::find($bid['shift_id']);
 
+		//The week start for the shift
+		$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
+		$week_start = date('Y-m-d', $week_start);
 		
 		//Can cover the whole shift
 		if ( $shift->start == $bid['start'] && $shift->end == $bid['end'] )
@@ -262,7 +265,7 @@ class TaShiftsController extends TaController {
 			else Session::flash('fail', "No empty bids allowed.");
 		}
 
-		return Redirect::to('ta/shifts');
+		return Redirect::to('ta/shifts?week_start='.$week_start);
 	}
 
 	//Get the shift details of a shift with ID as $id
