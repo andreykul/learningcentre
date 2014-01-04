@@ -77,3 +77,7 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 	* Decided what part to remove and what to keep
 	* Add and Commit
 	* You are good to go, push
+* Working with Emails
+	* If you want to see the email that is sent in pretend mode
+	* First change the mailer.php to display the body of the message as explained [here](http://stackoverflow.com/a/19734702/2394104).
+	* You are able to view the pretend emails at _"app/storage/logs"_
