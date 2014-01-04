@@ -13,7 +13,7 @@
 				@if (Session::get('success'))
 					<div class="row">
 						<div class="alert alert-success text-center">
-							Changes have been saved!
+							{{ Session::get('success') }}
 						</div>
 					</div>
 				@endif

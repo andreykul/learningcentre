@@ -25,7 +25,14 @@ $(function(){
 
 		$.ajax({
 			type: "POST",
-			data: {course_id: course_id, knowledge: knowledge}
+			data: {course_id: course_id, knowledge: knowledge},
+			success: function(){
+				course_name = $('#course-'+course_id).text();
+				$('.alert').text("Course Knowledge for "+course_name+" has been updated!").show();
+				setTimeout(function(){
+					$('.alert').fadeOut();
+				}, 4000);
+			}
 		});
 
 	});

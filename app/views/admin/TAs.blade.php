@@ -25,6 +25,7 @@
 				{{ Form::close() }}
 			</fieldset>
 			<br>
+			<br>
 			<fieldset>
 				<legend>Courses</legend>
 				@if ( Session::get('course_fail') )
@@ -53,7 +54,7 @@
 					@foreach ($courses as $course)
 						<li>
 							{{ Form::open(array('url'=>'admin/courses', 'role'=>'form', 'method'=>'delete')) }}
-							<button type="submit" name="course_id" value="{{ $course->id }}" class="btn-link"><span class="text-danger glyphicon glyphicon-remove"></span></button>
+								<button type="button" name="course_id" value="{{ $course->id }}" class="removeCourse btn-link"><span class="text-danger glyphicon glyphicon-remove"></span></button>
 							{{ "{$course->prefix} {$course->number} {$course->name}" }}
 							{{ Form::close() }}
 						</li>
@@ -88,7 +89,7 @@
 			    				<td class="text-center">{{ $ta->user()->email }}</td>
 			    				<td class="text-center">
 			    					{{ Form::open(["url" => "admin/tas/remove/".$ta->id, 'method' => 'delete', "role" => "form"]) }}
-			    						{{ Form::submit("Delete", array('class' => 'btn btn-block btn-danger')) }}
+			    						{{ Form::button("Delete", array('class' => 'removeTA btn btn-block btn-danger')) }}
 			    					{{ Form::close() }}
 			    				</td>
 			    			</tr>
@@ -98,4 +99,5 @@
 	    	</fieldset>
 		<div>
 	</div>
+	{{ HTML::script('js/admin-tas.js') }}
 @stop
