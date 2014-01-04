@@ -24,6 +24,8 @@
         <script type="text/javascript" src="{{ asset('js/underscore-min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/bootstrap-input-file.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootbox.min.js') }}"></script>
+
         <title>
             Learning Centre Application
         </title>

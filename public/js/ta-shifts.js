@@ -29,7 +29,24 @@ $(function(){
 	});
 
 	$('.shift-own').click(function(){
-		$(this).children('form').submit();
+		form = $(this).children('form');
+		bootbox.dialog({
+			message: "Are you sure?",
+			title: "Drop Shift",
+			buttons: {
+				danger: {
+					label: "Drop",
+					className: "btn-danger",
+					callback: function() {
+						form.submit();
+					}
+				},
+				cancel: {
+					label: "cancel",
+					className: "btn-default"
+				}
+			}
+		});
 	});
 
 	$('#take-shift').click(function(){

@@ -68,7 +68,7 @@
         <div class="col-md-4 col-md-offset-4">
         	@if ($user['active'])
 	        	{{ Form::open(array('url' => 'ta/profile', 'role' => 'form', 'method'=>'delete')) }}
-					{{ Form::submit("Deactivate", array('class'=>'btn btn-danger btn-lg btn-block')) }}
+					{{ Form::button("Deactivate", array('class'=>'deactivateTA btn btn-danger btn-lg btn-block')) }}
 				{{ Form::close() }}
 			@else
 				{{ Form::open(array('url' => 'ta/profile', 'role' => 'form')) }}
@@ -77,4 +77,5 @@
 			@endif
         </div>
     </div>
+    {{ HTML::script('js/ta-profile.js') }}
 @stop

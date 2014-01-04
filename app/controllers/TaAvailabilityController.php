@@ -123,7 +123,7 @@ class TaAvailabilityController extends TaController {
 			$ta->availability_updated_at = date('Y-m-d H:i:s');
 			$ta->save();
 
-			Session::flash('success', true);
+			Session::flash('success', 'Availability has been saved!');
 
 			//Redirect back to the TA availability page
 			return Redirect::to('ta/availability');

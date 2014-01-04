@@ -92,7 +92,7 @@
 	        	<div class="col-md-4 col-md-offset-4">
 		        		{{ Form::button('Publish', array('id'=>'publish','class'=>'btn btn-lg btn-primary btn-block')) }}
 		        	{{ Form::open(['url'=>'admin/schedule', 'method'=>'delete', 'role'=>'form']) }}
-		        		{{ Form::submit('Reset', array('class'=>'btn btn-lg btn-danger btn-block')) }}
+		        		{{ Form::button('Reset', array('class'=>'resetSchedule btn btn-lg btn-danger btn-block')) }}
 		        	{{ Form::close() }}	
 	        	</div>
 	        </div>
