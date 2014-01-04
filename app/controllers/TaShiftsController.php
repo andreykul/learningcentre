@@ -120,24 +120,40 @@ class TaShiftsController extends TaController {
 	{
 		$shift = Shift::find(Input::get('shift_id'));
 
+		$ta_id = Auth::user()->TA()->id;
+
+		//The week start for the shift
+		$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
+		$week_start = date('Y-m-d', $week_start);
+
 		//make sure the shift belongs to the TA
-		if ($shift->ta_id == Auth::user()->TA()->id )
+		if ($shift->ta_id == $ta_id )
 		{
 			$shift->ta_id = null;
 			$shift->save();
 
-			Session::flash('success', "Shift has been dropped.");
+			Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 
-			/* * * * * * * * * * * * * * * * * * * * * * * * *
-			 *												 *
-			 *			Logic to let other TAs know			 *
-			 *												 *
-			 * * * * * * * * * * * * * * * * * * * * * * * * */
+			$tas = TA::active();
+
+			//Send email to all active TAs
+			foreach ($tas as $ta) {
+				$email = $ta->user()->email;
+
+				//No need to send email to TA who dropped the shift
+				if ($ta_id != $ta->id)
+				{
+					Mail::send('emails.shiftAvailable', array('name' => $ta->name, 'shift'=>$shift, 'week_start'=>$week_start), function($message) use ($ta, $email)
+					{
+						$message->to($email, $ta->name )->subject('Shift Available!');
+					});
+				}
+			}
 		}
 		//error message, Shift does not belong to the TA
 		else Session::flash('fail', "Shift does not belong to you.");
 
-		return Redirect::to('ta/shifts');
+		return Redirect::to('ta/shifts?week_start='.$week_start);
 	}
 
 	//Method to make a bid for a shift
@@ -147,6 +163,9 @@ class TaShiftsController extends TaController {
 
 		$shift = Shift::find($bid['shift_id']);
 
+		//The week start for the shift
+		$week_start = strtotime($shift->date) - (date('w', strtotime($shift->date)) * 24 * 60 * 60);
+		$week_start = date('Y-m-d', $week_start);
 		
 		//Can cover the whole shift
 		if ( $shift->start == $bid['start'] && $shift->end == $bid['end'] )
@@ -164,7 +183,7 @@ class TaShiftsController extends TaController {
 				//Remove all bids for the shift
 				$this->clearBids($shift->id);
 
-				Session::flash('success', "Shift has been added to your schedule.");
+				Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 			}
 			else Session::flash('fail', "Bid overlaps with existing shift.");
 		}
@@ -223,7 +242,7 @@ class TaShiftsController extends TaController {
 						//Remove the old shift
 						Shift::destroy($shift->id);
 
-						Session::flash('success', "Shift has been added to your schedule.");
+						Session::flash('success', "Shift on ".date('l, F jS',strtotime($shift->date))." has been dropped.");
 					}
 					else Session::flash('success', "Bid has been changed.");
 				}
@@ -246,7 +265,7 @@ class TaShiftsController extends TaController {
 			else Session::flash('fail', "No empty bids allowed.");
 		}
 
-		return Redirect::to('ta/shifts');
+		return Redirect::to('ta/shifts?week_start='.$week_start);
 	}
 
 	//Get the shift details of a shift with ID as $id
