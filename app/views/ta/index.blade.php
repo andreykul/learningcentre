@@ -17,16 +17,54 @@
     			</fieldset>
     			
     			<div class="accordion">
-    				<h3>Week 5 : Feb 2nd - Feb 8th</h3>
+    				<h3>
+    					Week 6 : Feb 9th - Feb 15th : 5 hours
+    				</h3>
 					<div>
+						<div class="row">
+							<div class="col-md-12">
+								<label>Shifts:</label>
+								<ul>
+									<li>Monday, Feb 10th : 10:00 - 12:30 : 2.5 hours</li>
+									<li>Thursday, Feb 13th : 10:00 - 12:30 : 2.5 hours</li>	
+								</ul>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-md-5">
+								<label for="additional" class="control-label">Additional Hours: </label>
+								<input type="number" class="form-control" id="additional">
+							</div>	
+						</div>
+
+						<div class="row">
+							<div class="form-group col-md-12">
+								<label for="memo">Memo: </label>
+								<input type="text" class="form-control" id="memo">	
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-12">
+								<p>Total: <span class="hours">5</span> hours</p>
+								<button class="btn btn-primary">Submit Timesheet</button>
+							</div>	
+						</div>
+						
+					</div>
+					<h3>
+    					Week 5 : Feb 2nd - Feb 8th : 5 hours
+    					<span class="col-md-2 pull-right label label-warning" >Late</span>
+    				</h3>
+    				<div>
 						<p>Monday, Jan 20th : 10:00 - 12:30 : 2.5 hours</p>
 						<p>Thursday, Jan 23th : 10:00 - 12:30 : 2.5 hours</p>
 						<p>Total: 5 hours</p>
-						<button class="btn btn-primary">Submit Timesheet</button>
 					</div>
     				<h3>
-    					Week 4 : Jan 26th - Feb 1st
-    					<span class="col-md-2 pull-right label label-success" >Submitted</span>
+    					Week 4 : Jan 26th - Feb 1st : 5 hours
+    					<span class="col-md-2 pull-right label label-info" >Submitted</span>
     				</h3>
 					<div>
 						<p>Monday, Jan 20th : 10:00 - 12:30 : 2.5 hours</p>
@@ -35,7 +73,7 @@
 						<button class="btn btn-primary">View Timesheet</button>
 					</div>
     				<h3>
-    					Week 3 : Jan 19th - Jan 25th
+    					Week 3 : Jan 19th - Jan 25th : 5 hours
     					<span class="col-md-2 pull-right label label-danger" >Disapproved</span>
     				</h3>
 					<div>
@@ -45,8 +83,8 @@
 					</div>
 
     				<h3>
-    					Week 2 : Jan 12th - Jan 18th
-    					<span class="col-md-2 pull-right label label-warning">Approved</span>
+    					Week 2 : Jan 12th - Jan 18th : 2.5 hours
+    					<span class="col-md-2 pull-right label label-success">Approved</span>
     				</h3>
 					<div>
 						<p>Monday, Jan 13th : 10:00 - 12:30 : 2.5 hours</p>
@@ -54,8 +92,8 @@
 					</div>
 
     				<h3>
-    					Week 1 : Jan 5th - Jan 11th
-    					<span class="col-md-2 pull-right label label-warning">Approved</span>
+    					Week 1 : Jan 5th - Jan 11th : 5 hours
+    					<span class="col-md-2 pull-right label label-success">Approved</span>
     				</h3>
 					<div>
 						<p>Monday, Jan 6th : 10:00 - 12:30 : 2.5 hours</p>
