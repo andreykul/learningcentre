@@ -2,6 +2,15 @@
 @section("content")
     <div class="col-md-12">
     	<div class="row">
+    		<h3 class="text-center">
+    			<a class="pull-left btn-link" href="{{ url('/') }}">
+        		<span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+    			Winter 2014
+    			<a class="pull-right btn-link" href="{{ url('/') }}">
+        		<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+    		</h3>
+    	</div>
+    	<div class="row">
     		<div class="col-md-6">
     			<fieldset>
     				<legend class="text-center">Hours Break Down</legend>
