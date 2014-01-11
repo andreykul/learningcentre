@@ -24,7 +24,7 @@ class CreateTimesheetsTable extends Migration {
 			$table->float("sunday")->default(0);
 			$table->float("additional")->default(0);
 			$table->float("total")->default(0);
-			$table->text("memo")->default("");
+			$table->text("memo")->nullable();
 			$table->boolean("approved")->nullable();
 
 		});
