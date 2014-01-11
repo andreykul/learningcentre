@@ -69,13 +69,10 @@
 	    				</thead>
 	    				<tbody>
 	    					<tr>
-	    						<td>Worked this week:</td><td class="text-center">5</td>
+	    						<td>Worked:</td><td class="text-center">22.5</td>
 	    					</tr>
 	    					<tr>
-	    						<td>Total Additional:</td><td class="text-center">2</td>
-	    					</tr>
-	    					<tr>
-	    						<td>Total Worked:</td><td class="text-center">22.5</td>
+	    						<td>Additional:</td><td class="text-center">2</td>
 	    					</tr>
 	    					<tr>
 	    						<td>Total:</td><td class="text-center">24.5</td>
