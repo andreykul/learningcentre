@@ -16,6 +16,11 @@ class TA extends Eloquent {
     	return $this->hasMany('Availability','ta_id')->get();
     }
 
+    public function timesheets()
+    {
+        return $this->hasMany('Timesheet', 'ta_id')->get();
+    }
+
     public function bids()
     {
         return $this->hasMany('ShiftBid','ta_id')->get();
