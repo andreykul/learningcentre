@@ -25,6 +25,7 @@ class TaController extends BaseController {
             {
                 $this->navbar['Availability'] = array("url" => url("ta/availability"), 'active' => false);
                 $this->navbar["Shifts"] = array("url" => url("ta/shifts"), 'active' => false);
+                $this->navbar["Hours"] = array("url" => url("ta/hours"), 'active' => false);
             }
 
     	}

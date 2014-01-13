@@ -6,7 +6,7 @@ class Timesheet extends Eloquent {
 
     public $timestamps = false;
 
-    protected $fillable = array('ta_id', 'week', 'monday', 'tuesday','wednesday','thursday','friday','saturday','sunday','additional','memo');
+    protected $fillable = array('ta_id', 'week', 'monday', 'tuesday','wednesday','thursday','friday','saturday','sunday','additional','total','memo');
 
     public function TA()
     {
