@@ -48,6 +48,9 @@ class TaShiftsController extends TaController {
 		//Get all shifts for the TA from start of the week to the end
 		$shifts = Auth::user()->TA()->shifts($week_start, $week_end);
 
+		if (Input::has('ajax'))
+			return $shifts->toJson();
+
 		//Get the defined start time of the LC
 		$start = Settings::get("availability_start_hour")->value;
 		$start = Time::ToNumber($start);

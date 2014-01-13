@@ -18,6 +18,8 @@ Route::controller('admin/courses', 'AdminCoursesController');
 Route::controller('admin', 'AdminHomeController');
 
 Route::controller('ta/shifts', 'TaShiftsController');
+Route::controller('ta/hours', 'TaHoursController');
+Route::controller('ta/timesheet', 'TaTimesheetController');
 Route::controller('ta/profile/courses', 'TaCoursesController');
 Route::controller('ta/profile', 'TaProfileController');
 Route::controller('ta/availability', 'TaAvailabilityController');
