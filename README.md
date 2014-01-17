@@ -4,6 +4,8 @@ Learning Centre App
 ##Description
 Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 
+#####Feel free to modify it for your own faculty or needs.
+
 ##Installation
 ###Prerequisites
 
@@ -32,18 +34,26 @@ Learning Centre Web Application for Faculty of Computer Science at Dalhousie
 * run `git clone https://github.com/andreykul/learningcentre.git`.
 * Enter the Folder created.
 * run `php composer.phar install` to install dependencies. 
-* Open _PhpMyAdmin_ create a new database called "learningcentre"
+* [Optional] Open _PhpMyAdmin_ create a new database called "learningcentre"
 * Create a file `app/config/database.php` and copy [database.php](https://raw.github.com/laravel/laravel/master/app/config/database.php) into it
-	* Modify the user,password and database in the MySQL section
+	* Modify the following in the MySQL section to match your database:
+		* host
+		* database
+		* user
+		* password
+* [Optional] Modify `app/config/mail.php` to send actual emails
 * run `php artisan migrate` to update your database
 * run `php artisan db:seed` to populate the tables
 * You should have now have two accounts:
   * Email: "admin@cs.dal.ca" , Password: "password"
   * Email: "ta@cs.dal.ca" , Password: "password"
+  * Email: "ta2@cs.dal.ca" , Password: "password"
+  * Email: "ta3@cs.dal.ca" , Password: "password"
 * You should be able to access the project in your browset at:
 	* `http://localhost/learningcentre/public` or
 	* `http://localhost:8888/learningcentre/public` or
 	* `http://localhost:[port]/learningcentre/public`
+* Modifications to `public/.htaccess` might be needed to work correctly
 
 ---
 
