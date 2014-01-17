@@ -40,19 +40,49 @@
 
 				<br>
 
-				{{ Form::submit("Save Changes", array("class"=>"btn btn-primary"))}}
+				{{ Form::submit("Save Changes", array("class"=>"btn btn-primary btn-block"))}}
 			{{ Form::close() }}
     	</fieldset>
-    </div>
-    <div class="col-md-8">
-    	<fieldset>
-    		<legend>Teaching Assistants Availability</legend>
-    		<div>
+    	<br><br>
+		<fieldset>
+			<legend>Export Availability</legend>
+			<div>
     			{{ Form::open(["url" => "admin/availability/download", "role" => "form"]) }}
-					{{ Form::label("day","Select:") }}
-					{{ Form::select("day", 
+					<div>
+						{{ Form::label("day","Select:") }}
+						{{ Form::select("day", 
+								array(
+									"All" => "All",
+									"Monday" => "Monday",
+									"Tuesday" => "Tuesday",
+									"Wednesday" => "Wednesday",
+									"Thursday" => "Thursday",
+									"Friday" => "Friday",
+									"Saturday" => "Saturday",
+									"Sunday" => "Sunday",
+								),
+								null,
+								array("data-width" => "auto")
+							)
+						}}
+					</div>
+					<br>
+					{{ Form::button("<span class='glyphicon glyphicon-download'></span> Download",
+							array("class" => "btn btn-primary btn-block","type" => "submit")
+						)
+					}}
+    			{{ Form::close() }}
+    		</div>
+		</fieldset>
+    	<br><br>
+    	<fieldset>
+    		<legend>Import Availability</legend>
+    		{{ Form::open(['url' => 'admin/availability/import']) }}
+	    		<div>
+	    			
+		    		{{ Form::label("day","Select:") }}
+					{{ Form::select("day",
 							array(
-								"All" => "All",
 								"Monday" => "Monday",
 								"Tuesday" => "Tuesday",
 								"Wednesday" => "Wednesday",
@@ -65,14 +95,26 @@
 							array("data-width" => "auto")
 						)
 					}}
-					{{ Form::button("<span class='glyphicon glyphicon-download'></span> Download",
-							array("class" => "btn btn-primary","type" => "submit")
-						)
-					}}
-    			{{ Form::close() }}
-    		</div>
-    		<br>
+	    		</div>
+	    		<br>
+	    		<div class="input-group">
+					<span class="input-group-btn">
+						<span class="btn btn-success btn-file">
+							Browse… <input type="file" id="picture" class="browse-file" accept="image/*" name="picture">
+						</span>
+					</span>
+					<input type="text" class="form-control file-text" readonly="">
+				</div>
+				<br>
+				{{ Form::submit("Import", array("class" => 'btn btn-primary btn-block')) }}	
 
+			{{ Form::close() }}
+
+    	</fieldset>
+    </div>
+    <div class="col-md-8">
+    	<fieldset>
+    		<legend>Teaching Assistants Availability</legend>
     		@if (Session::get('remind_success'))
     			<div class="row">
 					<div class="alert alert-success text-center">
