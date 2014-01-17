@@ -57,7 +57,9 @@
 								"Tuesday" => "Tuesday",
 								"Wednesday" => "Wednesday",
 								"Thursday" => "Thursday",
-								"Friday" => "Friday"
+								"Friday" => "Friday",
+								"Saturday" => "Saturday",
+								"Sunday" => "Sunday",
 							),
 							null,
 							array("data-width" => "auto")
