@@ -9,7 +9,8 @@
 |
 */
 
-Route::controller('admin/availability/download', 'AdminAvailabilityDownloadController');
+Route::controller('admin/availability/export', 'AdminAvailabilityExportController');
+Route::controller('admin/availability/import', 'AdminAvailabilityImportController');
 Route::controller('admin/availability', 'AdminAvailabilityController');
 Route::controller('admin/schedule/day', 'AdminScheduleDayController');
 Route::controller('admin/schedule', 'AdminScheduleController');

@@ -36,7 +36,7 @@ class AdminAvailabilityController extends AdminController {
 			$setting->save();
 		}
 		
-		Session::flash('success',true);
+		Session::flash('success',"Availability Settings have been saved!");
 
 		return Redirect::to('admin/availability');
 	}
@@ -56,7 +56,7 @@ class AdminAvailabilityController extends AdminController {
 			});
 
 			return Redirect::to('admin/availability')
-					->with('remind_success',"Reminder has been sent to {$ta->name}!");	
+					->with('success',"Reminder has been sent to {$ta->name}!");	
 		}
 		else
 		{
@@ -72,7 +72,7 @@ class AdminAvailabilityController extends AdminController {
 			}
 
 			return Redirect::to('admin/availability')
-					->with('remind_success',"Reminder has been sent to all!");	
+					->with('success',"Reminder has been sent to all!");	
 		}
 		
 	}
