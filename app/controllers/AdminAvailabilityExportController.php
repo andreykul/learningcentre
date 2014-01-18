@@ -1,6 +1,6 @@
 <?php
 
-class AdminAvailabilityDownloadController extends AdminController {
+class AdminAvailabilityExportController extends AdminController {
 
 	public function postIndex(){
 
