@@ -11,9 +11,13 @@ class TA extends Eloquent {
 		return $this->belongsTo('User','user_id')->first();
 	}
 
-	public function availability()
+	public function availability($day = null)
 	{
-		return $this->hasMany('Availability','ta_id')->get();
+		if ($day == null)
+			return $this->hasMany('Availability','ta_id')->get();
+		else return $this->hasMany('Availability','ta_id')
+					->where('day','=',$day)
+					->get();
 	}
 
 	public function timesheets($semester,$year,$order = 'desc')
