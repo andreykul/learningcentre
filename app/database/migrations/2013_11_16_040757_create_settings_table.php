@@ -14,8 +14,8 @@ class CreateSettingsTable extends Migration {
 		Schema::create('settings', function($table)
 		{
 			$table->increments('id');
-			$table->string('name');
-			$table->string('value');
+			$table->string('name')->nullable();
+			$table->string('value')->nullable();
 			$table->timestamps();
 		});
 	}

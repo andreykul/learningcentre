@@ -13,9 +13,9 @@ class CreateCoursesTable extends Migration {
 	{
 		Schema::create('courses', function($table){
 			$table->increments('id');
-			$table->string('prefix');
-			$table->integer('number');
-			$table->string('name');
+			$table->string('prefix')->nullable();
+			$table->integer('number')->default(1000);
+			$table->string('name')->nullable();
 		});
 	}
 
