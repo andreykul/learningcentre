@@ -6,7 +6,7 @@
         		<span class="glyphicon glyphicon-circle-arrow-left"></span></a>Courses Knowledge Rating
         	</legend>
 
-            <div class="row">
+            <div>
                 <div hidden=hidden class="alert alert-success text-center">
                 </div>    
             </div>

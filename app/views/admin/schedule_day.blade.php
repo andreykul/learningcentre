@@ -3,11 +3,14 @@
     <div class="col-md-12">
     	<fieldset id="schedule">
     		{{ Form::open(['url' => 'admin/schedule/day', 'role' => 'form']) }}
-        	<legend class="row"><a class="btn btn-lg btn-link" href="{{ url('admin/schedule') }}">
-        		<span class="glyphicon glyphicon-circle-arrow-left"></span></a> {{ $day }}'s Schedule
+        	<legend class="text-center">
+        		<a class="pull-left btn-link" href="{{ url('admin/schedule') }}">
+        			<span class="glyphicon glyphicon-circle-arrow-left"></span>
+        		</a>
+        		{{ $day }}'s Schedule
         	</legend>
         	{{ form::hidden('day', $day) }}
-			<div class="row">
+			<div>
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>
@@ -55,7 +58,7 @@
 		        	</tbody>
 		        </table>
 	        </div>
-	        <div class="row">
+	        <div>
 	        	<button type="submit" class='btn btn-lg btn-primary center-block'>
 					<span class="glyphicon glyphicon-floppy-disk"></span> Save {{ $day }}'s Schedule
 				</button>

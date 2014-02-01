@@ -2,13 +2,13 @@
 @section("content")
     <div class="col-md-12">
 		@if (Session::get('success'))
-			<div class="row">
+			<div>
 				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
 			</div>
 		@elseif (Session::get('fail'))
-			<div class="row">
+			<div>
 				<div class="alert alert-danger text-center">
 					{{ Session::get('fail') }}
 				</div>
@@ -18,9 +18,9 @@
 
     	@if ( $user['active'] )
         <fieldset>
-        	<legend>My Information</legend>
+        	<legend class="text-center">My Information</legend>
         	{{ Form::open(array('url' => 'ta/profile', 'method'=>'put', 'role' =>"form", 'files' => true)) }}
-		        <div class="row">
+		        <div class="col-md-12">
 		        	<div class="col-md-4">
 		        		<div class="form-group">
 							{{ Form::label('picture', 'Image') }} <br>

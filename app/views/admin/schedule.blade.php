@@ -2,13 +2,13 @@
 @section("content")
     <div class="col-md-12">
     	@if (Session::get('success'))
-			<div class="row">
+			<div>
 				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
 			</div>
 		@elseif (Session::get('fail'))
-			<div class="row">
+			<div>
 				<div class="alert alert-danger text-center">
 					{{ Session::get('fail') }}
 				</div>
@@ -39,8 +39,8 @@
 			{{ Form::close() }}
 		</div><!-- /.modal -->
     	<fieldset>
-        	<legend class="row">Schedule</legend>
-			<div class="row">
+        	<legend class="text-center">Schedule</legend>
+			<div>
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>
@@ -88,7 +88,7 @@
 		        	</tbody>
 		        </table>
 	        </div>
-	        <div class="row">
+	        <div>
 	        	<div class="col-md-4 col-md-offset-4">
 	        			<button type="button" id='publish' class='btn btn-lg btn-primary btn-block'>
 							<span class="glyphicon glyphicon-ok"></span> Publish

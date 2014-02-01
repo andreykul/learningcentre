@@ -3,9 +3,9 @@
 	<div class="col-md-12">
 		<div class="col-md-4">
 			<fieldset>
-				<legend>New Teaching Assistant</legend>
+				<legend class="text-center">New Teaching Assistant</legend>
 				@foreach ($errors->all() as $error)
-					<div class="row">
+					<div>
 						<div class="alert alert-danger text-center">
 							{{ $error }}
 						</div>
@@ -29,15 +29,15 @@
 			<br>
 			<br>
 			<fieldset>
-				<legend>Courses</legend>
+				<legend class="text-center">Courses</legend>
 				@if ( Session::get('course_fail') )
-					<div class="row">
+					<div>
 						<div class="alert alert-danger text-center">
 							{{ Session::get('course_fail') }}
 						</div>
 					</div>
 				@elseif ( Session::get('course_success') )
-					<div class="row">
+					<div>
 						<div class="alert alert-success text-center">
 							{{ Session::get('course_success') }}
 						</div>
@@ -70,7 +70,7 @@
 
 	    <div class="col-md-8">
 	    	<fieldset>
-	    		<legend>Teaching Assistants</legend>
+	    		<legend class="text-center">Teaching Assistants</legend>
 	    		<table class="table table-striped">
 	    			<thead>
 	    				<tr>

@@ -2,13 +2,13 @@
 @section("content")
     <div class="col-md-12">
     	@if (Session::get('success'))
-			<div class="row">
+			<div>
 				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
 			</div>
 		@elseif (Session::get('fail'))
-			<div class="row">
+			<div>
 				<div class="alert alert-danger text-center">
 					{{ Session::get('fail') }}
 				</div>
@@ -26,7 +26,7 @@
 					<div class="modal-body">
 						<div class="my-bid">
 							<fieldset>
-								<legend>Add Bid</legend>
+								<legend class="text-center">Add Bid</legend>
 								{{ Form::hidden('shift_id') }}
 								{{ Form::hidden('ta_id', Auth::user()->TA()->id ) }}
 								<div>
@@ -45,7 +45,7 @@
 						<br>
 						<div class="other-bids">
 							<fieldset>
-								<legend>Other Bids</legend>
+								<legend class="text-center">Other Bids</legend>
 								<table class="table table-striped table-condensed">
 								<thead>
 									<tr>
@@ -68,11 +68,11 @@
 			{{ Form::close() }}
 		</div><!-- /.modal -->
         <fieldset>
-        	<legend class="row">Shifts ({{ date("M jS, Y",strtotime($week_start)) }}
+        	<legend class="text-center">Shifts ({{ date("M jS, Y",strtotime($week_start)) }}
         		 - 
         		 {{ date("M jS, Y",strtotime($week_start)+ 6 * 24 * 60 * 60) }})</legend>
 
-			<div class="row">
+			<div>
 				<a 	href="?week_start={{ date('Y-m-d',strtotime($week_start) - 7 * 24 * 60 * 60) }}" 
 					class="pull-left btn btn-lg">
 						<span class="glyphicon glyphicon-circle-arrow-left"></span> Previous Week
@@ -83,7 +83,7 @@
 				</a>
 			</div>
 
-			<div class="row">
+			<div>
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>

@@ -2,7 +2,7 @@
 @section("content")
 	<div class="col-md-12">
 		@if (Session::get('success'))
-			<div class="row">
+			<div>
 				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
@@ -10,7 +10,7 @@
 		@endif
 
 		@if (Session::get('warning'))
-			<div class="row">
+			<div>
 				<div class="alert alert-warning text-center">
 					{{ Session::get('warning') }}
 				</div>
@@ -18,17 +18,17 @@
 		@endif
 
 		@if (Session::get('fail'))
-			<div class="row">
+			<div>
 				<div class="alert alert-danger text-center">
 					{{ Session::get('fail') }}
 				</div>
 			</div>
 		@endif
 
-		<div class="row">
+		<div>
 			<div class="col-md-4">
 		    	<fieldset>
-		    		<legend>Availabiltiy Settings</legend>
+		    		<legend class="text-center">Availabiltiy Settings</legend>
 					
 
 		    		{{ Form::open(["url" => "admin/availability", "role" => "form"]) }}
@@ -68,7 +68,7 @@
 		    	</fieldset>
 		    	<br><br>
 				<fieldset>
-					<legend>Export Availability</legend>
+					<legend class="text-center">Export Availability</legend>
 					<div>
 		    			{{ Form::open(["url" => "admin/availability/export", "role" => "form"]) }}
 							<div>
@@ -99,7 +99,7 @@
 				</fieldset>
 		    	<br><br>
 		    	<fieldset>
-		    		<legend>Import Availability</legend>
+		    		<legend class="text-center">Import Availability</legend>
 		    		{{ Form::open(array('url' => 'admin/availability/import', 'files' => true)) }}
 			    		<div>
 			    			
@@ -144,9 +144,9 @@
 		    </div>
 		    <div class="col-md-8">
 		    	<fieldset>
-		    		<legend>Teaching Assistants Availability</legend>
+		    		<legend class="text-center">Teaching Assistants Availability</legend>
 		    		@if (Session::get('remind_success'))
-		    			<div class="row">
+		    			<div>
 							<div class="alert alert-success text-center">
 								{{ Session::get('remind_success') }}
 							</div>
