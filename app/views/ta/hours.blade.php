@@ -2,13 +2,13 @@
 @section("content")
     <div class="col-md-12">
     	@if (Session::get('success'))
-			<div class="row">
+			<div>
 				<div class="alert alert-success text-center">
 					{{ Session::get('success') }}
 				</div>
 			</div>
 		@endif
-    	<div class="row">
+    	<div>
     		<h3 class="text-center">
     			<a class="pull-left btn-link" href="{{ url('ta/hours?semester='.$semester['previous'].'&year='.$year['previous']) }}">
         		<span class="glyphicon glyphicon-circle-arrow-left"></span></a>
@@ -17,7 +17,7 @@
         		<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
     		</h3>
     	</div>
-    	<div class="row">
+    	<div>
     		<div class="col-md-6">
     			<fieldset>
     				<legend class="text-center">Hours Break Down</legend>
@@ -53,7 +53,7 @@
 								<input type="hidden" name="week" value="{{ date('Y-m-d',strtotime($week_end) - (($current_week - $i) * 7 * 86400)) }}">
 							@endif
 
-							<div class="row">
+							<div>
 								<div class="col-md-12">
 									<label>Shifts:</label>
 									<ul>
@@ -71,7 +71,7 @@
 								</div>
 							</div>
 
-							<div class="row">
+							<div>
 								<div class="form-group col-md-5">
 									<label for="week-{{ $i }}-additional" class="control-label">Additional Hours: </label>
 									@if ( ! isset($shifts_per_week[$i]['submitted']) )
@@ -82,7 +82,7 @@
 								</div>	
 							</div>
 
-							<div class="row">
+							<div>
 								<div class="form-group col-md-12">
 									<label for="week-{{ $i }}-memo">Memo: </label>
 									@if ( ! isset($shifts_per_week[$i]['submitted']) )
@@ -93,7 +93,7 @@
 								</div>
 							</div>
 							
-							<div class="row">
+							<div>
 								<div class="col-md-12">
 									@if ( isset($shifts_per_week[$i]['submitted']) )
 										<p><label>Total:</label> <span id="week-{{ $i }}-hours" class="hours">{{ $shifts_total[$i] + $shifts_per_week[$i]['additional'] }}</span> hours</p>

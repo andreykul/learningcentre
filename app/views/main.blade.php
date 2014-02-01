@@ -1,7 +1,7 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
-    	<div class="row">
+    	<div>
     		<label for="courseSelection">Search Help For:</label> <br>
     		<select id="courseSelection" data-width="auto">
     			@foreach ($courses  as $course)
@@ -16,8 +16,8 @@
     	</div>
     	<br>
         <fieldset>
-        	<legend class="row">Schedule</legend>
-			<div class="row">
+        	<legend class="text-center">Schedule</legend>
+			<div>
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>

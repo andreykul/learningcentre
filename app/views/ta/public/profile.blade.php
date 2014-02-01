@@ -4,7 +4,7 @@
         <fieldset>
         	<legend class="text-center"><a class="pull-left btn-link" href="{{ url('/') }}">
         		<span class="glyphicon glyphicon-circle-arrow-left"></span></a> {{ $ta->name }}</legend>
-		        <div class="row">
+		        <div>
 		        	<div class="col-md-4">
 						<label>Image</label> <br>
 							<img src="{{ asset('images/'.$ta->picture) }}" width="100%" alt="{{ $ta->name }}" class="img-thumbnail">

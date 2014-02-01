@@ -2,26 +2,26 @@
 @section("content")
     <div class="col-md-12">
         <fieldset>
-        	<legend class="row">Availability Entry</legend>
+        	<legend class="text-center">Availability Entry</legend>
 			@if ($locked)
-				<div class="row">
+				<div>
 					<div class="alert alert-danger">
 						Availability Changes have been Disabled!
 					</div>
 				</div>
 			@else
 				@if (Session::get('success'))
-					<div class="row">
+					<div>
 						<div class="alert alert-success text-center">
 							{{ Session::get('success') }}
 						</div>
 					</div>
 				@endif
-				<div class="row">
+				<div>
 					<p>Please select availability:</p>
 				</div>
 
-				<div class="row">
+				<div>
 					<div class="col-md-4">
 						<button id="unavailable" class="availability btn btn-block btn-lg btn-default" value="" >
 							<span class="glyphicon glyphicon-remove-sign"></span> Unavailable
@@ -41,13 +41,13 @@
 
 				<br>
 
-				<div class="row">
+				<div>
 					Apply availability to schedule:
 				</div>
 			@endif
 			<br>
 
-			<div class="row">
+			<div>
 	        	<table class="table table-striped table-bordered table-condensed">
 		        	<thead>
 		        		<tr>
