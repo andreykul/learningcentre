@@ -15,13 +15,15 @@
 				{{ Form::open(["url" => "admin/tas/add", "role" => "form"]) }}
 					<div class="form-group">
 						{{ Form::label('name', 'Name') }}
-						{{ Form::text('name', null, array("class" => "form-control") ) }}
+						{{ Form::text('name', null, array("class" => "form-control", "placeholder" => "John Smith") ) }}
 					</div>
 					<div class="form-group">
 						{{ Form::label('email', 'Email') }}
-						{{ Form::email('email', null, array("class" => "form-control") ) }}
+						{{ Form::email('email', null, array("class" => "form-control", "placeholder" => "john.smith@cs.dal.ca") ) }}
 					</div>
-					{{ Form::submit("Add TA", array('class' => 'btn btn-block btn-primary')) }}
+					<button type="submit" class='btn btn-block btn-primary'>
+						<span class="glyphicon glyphicon-plus-sign"></span> Add TA
+					</button>
 				{{ Form::close() }}
 			</fieldset>
 			<br>
@@ -46,7 +48,10 @@
 						{{ Form::label('course', 'Course') }}
 						{{ Form::text('course', null, array("class" => "form-control","placeholder"=>"CSCI 2110 Introfuction to Computer Science III") ) }}
 					</div>
-					{{ Form::submit("Add Course", array('class' => 'btn btn-block btn-primary')) }}
+					
+					<button type="submit" class='btn btn-block btn-primary'>
+						<span class="glyphicon glyphicon-plus-sign"></span> Add Course
+					</button>
 				{{ Form::close() }}
 				<br>
 				<label>Existing Courses</label>
@@ -89,8 +94,10 @@
 			    				<td class="text-center">{{ $ta->user()->email }}</td>
 			    				<td class="text-center">
 			    					{{ Form::open(["url" => "admin/tas/remove/".$ta->id, 'method' => 'delete', "role" => "form"]) }}
-			    						{{ Form::button("Delete", array('class' => 'removeTA btn btn-block btn-danger')) }}
-			    					{{ Form::close() }}
+			    					<button type="submit" class='removeTA btn btn-block btn-danger'>
+										<span class="glyphicon glyphicon-remove"></span> Delete
+									</button>
+			    					
 			    				</td>
 			    			</tr>
 			    		@endforeach

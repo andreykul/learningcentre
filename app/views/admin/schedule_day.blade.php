@@ -56,7 +56,9 @@
 		        </table>
 	        </div>
 	        <div class="row">
-	        	{{ Form::submit("Save $day's Schedule", array('class' => 'btn btn-lg btn-primary center-block') ) }}
+	        	<button type="submit" class='btn btn-lg btn-primary center-block'>
+					<span class="glyphicon glyphicon-floppy-disk"></span> Save {{ $day }}'s Schedule
+				</button>
 	        </div>
 	        {{ Form::close() }}
 		</fieldset>

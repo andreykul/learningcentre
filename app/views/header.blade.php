@@ -21,11 +21,15 @@
 		            <ul class="nav navbar-nav navbar-right">
 		            	<li class="dropdown">
 		            		<a href="#" class="dropdown-toggle" 
-		            			data-toggle="dropdown">{{ $user['username'] }}
+		            			data-toggle="dropdown">
+		            			<span class="glyphicon glyphicon-user"></span>
+		            			{{ $user['username'] }}
 		            			<b class="caret"></b>
 		            		</a>
 							<ul class="dropdown-menu">
-								<li><a href="{{ url('logout') }}">Logout</a></li>
+								<li><a href="{{ url('logout') }}">
+									<span class="glyphicon glyphicon-off"></span> Logout
+								</a></li>
 							</ul>
 		            	</li>
 					</ul>

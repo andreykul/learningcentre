@@ -10,7 +10,9 @@
     				</option>
     			@endforeach
     		</select>
-    		<button id="searchCourse" class="btn btn-primary">Search</button>
+    		<button id="searchCourse" class="btn btn-primary">
+    			<span class="glyphicon glyphicon-search"></span> Search
+    		</button>
     	</div>
     	<br>
         <fieldset>
