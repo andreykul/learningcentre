@@ -1,6 +1,21 @@
 @extends("layout")
 @section("content")
     <div class="col-md-12">
+		@if (Session::get('success'))
+			<div class="row">
+				<div class="alert alert-success text-center">
+					{{ Session::get('success') }}
+				</div>
+			</div>
+		@elseif (Session::get('fail'))
+			<div class="row">
+				<div class="alert alert-danger text-center">
+					{{ Session::get('fail') }}
+				</div>
+			</div>
+		@endif
+
+
     	@if ( $user['active'] )
         <fieldset>
         	<legend>My Information</legend>
@@ -18,12 +33,6 @@
 								</span>
 								<input type="text" class="form-control file-text" readonly="">
 							</div>
-							@if ( $error = $errors->first("picture") )
-								<div class="alert alert-warning alert-dismissable">
-					            	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					                {{ $error }}
-					            </div>
-							@endif
 						</div>
 		        	</div>
 
