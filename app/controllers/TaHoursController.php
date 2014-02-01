@@ -24,7 +24,8 @@ class TaHoursController extends TaController
 			{
 				case "Winter":
 					$semester['previous'] = "Fall";
-					$semester['next'] = "Summer";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Summer";
 					$year['previous'] = $year['now'] - 1;
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 January {$year['now']}");
@@ -32,7 +33,8 @@ class TaHoursController extends TaController
 					break;
 				case "Summer":
 					$semester['previous'] = "Winter";
-					$semester['next'] = "Fall";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Fall";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 May {$year['now']}");
@@ -40,7 +42,8 @@ class TaHoursController extends TaController
 					break;
 				case "Fall":
 					$semester['previous'] = "Summer";
-					$semester['next'] = "Winter";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Winter";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'] + 1;
 					$first_week = new DateTime("1 September {$year['now']}");
@@ -60,7 +63,8 @@ class TaHoursController extends TaController
 				case 4:
 					$semester['previous'] = "Fall";
 					$semester['now'] = "Winter";
-					$semester['next'] = "Summer";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Summer";
 					$year['previous'] = $year['now'] - 1;
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 January {$year['now']}");
@@ -71,7 +75,8 @@ class TaHoursController extends TaController
 				case 8:
 					$semester['previous'] = "Winter";
 					$semester['now'] = "Summer";
-					$semester['next'] = "Fall";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Fall";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 May {$year['now']}");
@@ -82,7 +87,8 @@ class TaHoursController extends TaController
 				case 12:
 					$semester['previous'] = "Summer";
 					$semester['now'] = "Fall";
-					$semester['next'] = "Winter";
+					if ($year['now'] != date('Y'))
+						$semester['next'] = "Winter";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'] + 1;
 					$first_week = new DateTime("1 September {$year['now']}");

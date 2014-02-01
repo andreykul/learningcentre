@@ -13,8 +13,10 @@
     			<a class="pull-left btn-link" href="{{ url('ta/hours?semester='.$semester['previous'].'&year='.$year['previous']) }}">
         		<span class="glyphicon glyphicon-circle-arrow-left"></span></a>
     			{{ $semester['now'] }} <span id="year">{{ $year['now'] }}</span>
-    			<a class="pull-right btn-link" href="{{ url('ta/hours?semester='.$semester['next'].'&year='.$year['next']) }}">
-        		<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+    			@if (isset($semester['next']))
+	    			<a class="pull-right btn-link" href="{{ url('ta/hours?semester='.$semester['next'].'&year='.$year['next']) }}">
+	        		<span class="glyphicon glyphicon-circle-arrow-right"></span></a>
+        		@endif
     		</h3>
     	</div>
     	<div>
