@@ -15,10 +15,10 @@ class CreateAvailabilityTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('ta_id');
-			$table->string('day');
-			$table->integer('start');
-			$table->integer('end');
-			$table->boolean('prefered');
+			$table->string('day')->nullable();
+			$table->integer('start')->default(0);
+			$table->integer('end')->default(0);
+			$table->boolean('prefered')->default(false);
 		});
 	}
 

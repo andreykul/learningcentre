@@ -15,7 +15,7 @@ class CreateCourseKnowledgeTable extends Migration {
 			$table->increments('id');
 			$table->integer('ta_id');
 			$table->integer('course_id');
-			$table->integer('knowledge');
+			$table->integer('knowledge')->default(1);
 		});
 	}
 
