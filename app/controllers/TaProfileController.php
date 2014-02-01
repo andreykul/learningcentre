@@ -16,47 +16,44 @@ class TaProfileController extends TaController {
 
     public function putIndex()
     {
-        $validator = Validator::make(Input::all(), [
-            "name" => "required",
-        ]);
+        $profile = Input::except(array('_method','_token'));
 
-        if ($this->user['active'] && $validator->passes())
+        if ( empty($profile['name']) )
         {
-            $profile = Input::except('_method');
+            Session::flash('fail', "Name cannot be empty!");
+            return Redirect::to('ta/profile');
+        }
 
-            if (Input::hasFile('picture'))
+        if (Input::hasFile('picture'))
+        {
+            $picture = Input::file('picture');
+
+            $type = $picture->getMimeType();
+
+            $type = explode('/',$type)[0];
+
+            if ($type == "image")
             {
-                $picture = Input::file('picture');
-
-                $type = $picture->getMimeType();
-
-                $type = explode('/',$type)[0];
-
-                if ($type == "image")
-                {
-                    $picture->move('images', $picture->getClientOriginalName());
-                    $profile['picture'] = $picture->getClientOriginalName();
-                }
-                else unset($profile['picture']);
+                $picture->move('images', $picture->getClientOriginalName());
+                $profile['picture'] = $picture->getClientOriginalName();
             }
-            else unset($profile['picture']);
-
-            $ta = User::find(Auth::user()->id)->TA();
-
-            unset($profile['_token']);
-
-            foreach ($profile as $attribute => $value)
-                $ta[$attribute] = $value;
-
-            $ta->save();
-
-            return Redirect::to('ta/profile');
+            else
+            {
+                Session::flash('fail', "File must be an image!");
+                return Redirect::to('ta/profile');
+            }
         }
-        else
-        {
-            //Display error message since name is required
-            return Redirect::to('ta/profile');
-        }
+        else unset($profile['picture']);
+
+        $ta = Auth::user()->TA();
+
+        foreach ($profile as $attribute => $value)
+            $ta[$attribute] = $value;
+
+        $ta->save();
+
+        Session::flash('success',"Profile changes have been saved!");
+        return Redirect::to('ta/profile');
     }
 
     public function deleteIndex()
