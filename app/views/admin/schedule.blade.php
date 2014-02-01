@@ -90,9 +90,14 @@
 	        </div>
 	        <div class="row">
 	        	<div class="col-md-4 col-md-offset-4">
-		        		{{ Form::button('Publish', array('id'=>'publish','class'=>'btn btn-lg btn-primary btn-block')) }}
+	        			<button type="button" id='publish' class='btn btn-lg btn-primary btn-block'>
+							<span class="glyphicon glyphicon-ok"></span> Publish
+						</button>
+		        	{{ Form::close() }}	
 		        	{{ Form::open(['url'=>'admin/schedule', 'method'=>'delete', 'role'=>'form']) }}
-		        		{{ Form::button('Reset', array('class'=>'resetSchedule btn btn-lg btn-danger btn-block')) }}
+		        		<button type="button" class='resetSchedule btn btn-lg btn-danger btn-block'>
+							<span class="glyphicon glyphicon-refresh"></span> Reset
+						</button>
 		        	{{ Form::close() }}	
 	        	</div>
 	        </div>

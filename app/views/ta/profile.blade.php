@@ -61,14 +61,18 @@
 							<input type="number" name="wanted_hours" class="form-control" value="{{ $ta->wanted_hours }}"/>
 						</div>
 						<div class="form-group">
-							{{ link_to('ta/profile/courses', "Courses Knowledge Rating", $attributes = array('class'=>'btn btn-lg btn-block btn-info')) }}
+							<a href="{{ url('ta/profile/courses') }}" class='btn btn-lg btn-block btn-info'>
+								<span class="glyphicon glyphicon-certificate"></span> Courses Knowledge Rating
+							</a>
 						</div>
 
 		        	</div>
 		        </div>
 		        
 		        <div class="col-md-4 col-md-offset-4">
-		        	{{ Form::submit("Save Changes", array('class'=>'btn btn-primary btn-lg btn-block') ) }}
+		        	<button type="submit" class='btn btn-primary btn-lg btn-block'>
+						<span class="glyphicon glyphicon-floppy-disk"></span> Save Changes
+					</button>
 		        	{{ Form::close() }}
 		        </div>
         </fieldset>
@@ -77,11 +81,15 @@
         <div class="col-md-4 col-md-offset-4">
         	@if ($user['active'])
 	        	{{ Form::open(array('url' => 'ta/profile', 'role' => 'form', 'method'=>'delete')) }}
-					{{ Form::button("Deactivate", array('class'=>'deactivateTA btn btn-danger btn-lg btn-block')) }}
+					<button type="button" class='deactivateTA btn btn-danger btn-lg btn-block'>
+						<span class="glyphicon glyphicon-remove-circle"></span> Deactivate
+					</button>
 				{{ Form::close() }}
 			@else
 				{{ Form::open(array('url' => 'ta/profile', 'role' => 'form')) }}
-					{{ Form::submit("Activate", array('class' => 'btn btn-success btn-lg btn-block')) }}
+					<button type="submit" class='btn btn-success btn-lg btn-block'>
+						<span class="glyphicon glyphicon-ok-circle"></span> Activate
+					</button>
 				{{ Form::close() }}
 			@endif
         </div>

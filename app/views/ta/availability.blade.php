@@ -23,13 +23,19 @@
 
 				<div class="row">
 					<div class="col-md-4">
-						<button id="unavailable" class="availability btn btn-block btn-lg btn-default" value="" >Unavailable</button>
+						<button id="unavailable" class="availability btn btn-block btn-lg btn-default" value="" >
+							<span class="glyphicon glyphicon-remove-sign"></span> Unavailable
+						</button>
 					</div>
 					<div class="col-md-4">
-						<button id="available" class="availability btn btn-block btn-lg btn-warning" value="warning" >Available</button>
+						<button id="available" class="availability btn btn-block btn-lg btn-warning" value="warning">
+							<span class="glyphicon glyphicon-ok-sign"></span> Available
+						</button>
 					</div>
 					<div class="col-md-4">
-						<button id="prefered" class="availability btn btn-block btn-lg btn-success" value="success" >Prefered</button>
+						<button id="prefered" class="availability btn btn-block btn-lg btn-success" value="success">
+							<span class="glyphicon glyphicon-plus-sign"></span> Prefered
+						</button>
 					</div>
 				</div>
 
@@ -91,7 +97,11 @@
 						@endfor
 					@endforeach
 
-					{{ Form::submit("Save Changes", array("class"=>"btn btn-primary btn-lg center-block")) }}
+					<div class="col-md-4 col-md-offset-4">
+						<button type="submit" class='btn btn-primary btn-lg btn-block'>
+							<span class="glyphicon glyphicon-floppy-disk"></span> Save Changes
+						</button>
+					</div>
 		        {{ Form::close() }}
 	        @endif
         </fieldset>
