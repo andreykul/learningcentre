@@ -1,5 +1,7 @@
 $(function(){
-	$('.removeTA').click(function(){
+	$('.removeTA').click(function(evt){
+		evt.preventDefault();
+
 		form = $(this).parent();
 		bootbox.dialog({
 			message: "Are you sure?",
@@ -20,7 +22,9 @@ $(function(){
 		});
 	});
 
-	$('.removeCourse').click(function(){
+	$('.removeCourse').click(function(evt){
+		evt.preventDefault();
+
 		form = $(this).parent();
 		bootbox.dialog({
 			message: "Are you sure?",

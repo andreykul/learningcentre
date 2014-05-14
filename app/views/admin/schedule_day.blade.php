@@ -46,10 +46,7 @@
 											"
 										@endif
 									>
-									@if ( isset($available[$ta->id][$i]) )
-										{{ Form::hidden("ta-{$ta->id}[$i]", 
-											isset($assigned[$ta->id][$i])?1:0) }}
-									@endif
+									{{ Form::hidden("ta-{$ta->id}[$i]", isset($assigned[$ta->id][$i])?1:0) }}
 									</td>
 								@endforeach
 

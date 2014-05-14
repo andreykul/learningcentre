@@ -76,6 +76,7 @@
 	    				<tr>
 	    					<th class="text-center">Name</th>
 	    					<th class="text-center">Active</th>
+	    					<th class="text-center">Wanted Hours</th>
 	    					<th class="text-center">Email</th>
 	    					<th class="text-center">Action</th>
 	    				</tr>
@@ -91,12 +92,14 @@
 			    						<span class="text-danger glyphicon glyphicon-lg glyphicon-minus-sign"></span>
 			    					@endif
 			    				</td>
+			    				<td class="text-center">{{ $ta->wanted_hours }}</td>
 			    				<td class="text-center">{{ $ta->user()->email }}</td>
 			    				<td class="text-center">
 			    					{{ Form::open(["url" => "admin/tas/remove/".$ta->id, 'method' => 'delete', "role" => "form"]) }}
-			    					<button type="submit" class='removeTA btn btn-block btn-danger'>
+			    					<button class='removeTA btn btn-block btn-danger'>
 										<span class="glyphicon glyphicon-remove"></span> Delete
 									</button>
+									{{ Form::close() }}
 			    					
 			    				</td>
 			    			</tr>

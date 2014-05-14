@@ -46,7 +46,7 @@ class AdminScheduleDayController extends AdminController {
 		$tas = Input::except(array('_token','day'));
 
 		$shifts = array();
-		
+
 		foreach ($tas as $ta_id => $times)
 		{
 			$start = null;
