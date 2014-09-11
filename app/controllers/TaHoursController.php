@@ -24,8 +24,7 @@ class TaHoursController extends TaController
 			{
 				case "Winter":
 					$semester['previous'] = "Fall";
-					if ($year['now'] != date('Y'))
-						$semester['next'] = "Summer";
+					$semester['next'] = "Summer";
 					$year['previous'] = $year['now'] - 1;
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 January {$year['now']}");
@@ -33,8 +32,7 @@ class TaHoursController extends TaController
 					break;
 				case "Summer":
 					$semester['previous'] = "Winter";
-					if ($year['now'] != date('Y'))
-						$semester['next'] = "Fall";
+					$semester['next'] = "Fall";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'];
 					$first_week = new DateTime("1 May {$year['now']}");
@@ -42,8 +40,7 @@ class TaHoursController extends TaController
 					break;
 				case "Fall":
 					$semester['previous'] = "Summer";
-					if ($year['now'] != date('Y'))
-						$semester['next'] = "Winter";
+					$semester['next'] = "Winter";
 					$year['previous'] = $year['now'];
 					$year['next'] = $year['now'] + 1;
 					$first_week = new DateTime("1 September {$year['now']}");
