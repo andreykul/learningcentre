@@ -33,18 +33,18 @@
 
 			        			@foreach ($tas as $ta)
 									<td id="{{ $ta->id }}-{{ str_pad($i, 4, '0', STR_PAD_LEFT) }}"
+										class="
 										@if ( isset($available[$ta->id][$i]) )
-											class="
 											@if ($available[$ta->id][$i])
 												success
 											@else
 												warning
 											@endif
-											@if (isset($assigned[$ta->id][$i]))
-												info
-											@endif
-											"
 										@endif
+										@if (isset($assigned[$ta->id][$i]))
+											info
+										@endif
+										"
 									>
 									{{ Form::hidden("ta-{$ta->id}[$i]", isset($assigned[$ta->id][$i])?1:0) }}
 									</td>
